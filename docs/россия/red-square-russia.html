@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Red Square, Russia • Travel Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --surface: #020617;
+      --card: #020617;
+      --muted: #9ca3af;
+      --text: #e5e7eb;
+      --brand: #3b82f6;
+      --brand-2: #22d3ee;
+      --radius: 16px;
+      --gap: 16px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 20px 16px 32px;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+      color: #f9fafb;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+    }
+
+    .hero-inner {
+      position: relative;
+      min-height: 220px;
+      padding: 20px 16px 22px;
+      display: grid;
+      align-items: flex-end;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+        url("https://images.unsplash.com/photo-1664471943144-427ee325e076?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+      opacity: 0.95;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(24px, 4.5vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .sub {
+      font-size: 14px;
+      color: #e2e8f0;
+      opacity: 0.9;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      backdrop-filter: blur(18px);
+      margin-bottom: 10px;
+    }
+
+    /* LAYOUT SECTIONS */
+
+    .section {
+      padding: 24px 0 4px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      color: #e5e7eb;
+      letter-spacing: 0.02em;
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .grid.cards {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .grid.cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1040px) {
+      .grid.cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* CARDS */
+
+    .card {
+      background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      padding: 16px 15px 15px;
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+      border-color: rgba(96, 165, 250, 0.9);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      color: #f9fafb;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* HISTORY */
+
+    .history {
+      background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+      border-radius: 18px;
+      padding: 18px 18px 17px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      box-shadow: var(--shadow);
+    }
+
+    .history h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+    }
+
+    .history p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* NEARBY */
+
+    .nearby-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nearby-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nearby-distance {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 0 14px;
+      height: 44px;
+      border: 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: #f9fafb;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    /* GALLERY – HORIZONTAL ON MOBILE */
+
+    .gallery {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 72%;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 6px;
+    }
+
+    .gallery::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb {
+      background: #111827;
+      border-radius: 999px;
+    }
+
+    @media (min-width: 720px) {
+      .gallery {
+        grid-auto-columns: 31%;
+      }
+    }
+
+    .gallery-item {
+      scroll-snap-align: center;
+      background: #020617;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    footer {
+      padding: 26px 16px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div>
+        <div class="pill">Best time: Late spring (May to early June) or early autumn (September) for pleasant weather, fewer crowds than peak summer, and beautiful light for photography.</div>
+        <h1>Red Square, Russia</h1>
+        
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Quick facts -->
+    <section class="section">
+      <h2 class="section-title">Highlights</h2>
+      <div class="grid cards">
+        
+        <article class="card">
+          <h3 class="card-title">Did you know?</h3>
+          <p class="muted">The name 'Red Square' (Krasnaya Ploshchad) originated from the Old Russian word 'krasnaya,' meaning 'beautiful,' not 'red' in the political sense.</p>
+        </article>
+        
+        <article class="card">
+          <h3 class="card-title">Did you know?</h3>
+          <p class="muted">Lenin's Mausoleum, located on Red Square, has housed the embalmed body of Vladimir Lenin since 1924, attracting millions of visitors over the decades.</p>
+        </article>
+        
+        <article class="card">
+          <h3 class="card-title">Did you know?</h3>
+          <p class="muted">St. Basil's Cathedral, with its distinctive multi-colored onion domes, stands at one end of Red Square. Legend says Ivan the Terrible blinded its architects so they could never build anything as beautiful again, though this is likely apocryphal.</p>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="section">
+      <h2 class="section-title">Story of this place</h2>
+      <article class="history">
+        <p>Red Square, or Krasnaya Ploshchad in Russian, holds a monumental place in Russian history, acting as the vibrant heart of Moscow for centuries. Its origins trace back to the late 15th century, when Tsar Ivan III cleared a large open space outside the eastern walls of the Kremlin. This clearance served practical purposes: to create a marketplace for merchants and to establish a firebreak, as wooden buildings were a constant fire hazard. Initially known by various names, it acquired its enduring title, "Krasnaya Ploshchad," in the 17th century. While often associated with communism, the word 'krasnaya' in Old Russian meant 'beautiful,' and only later took on the meaning of 'red.'
+
+Throughout its history, Red Square has witnessed countless pivotal events. It served as a bustling commercial hub, a venue for public proclamations, coronations of Tsars, and even public executions. During the Soviet era, it transformed into a symbol of state power, hosting grand military parades, most notably the May Day and Victory Day parades, showcasing the might of the Soviet Union. Lenin's Mausoleum, housing the embalmed body of Vladimir Lenin, was constructed here in 1924, becoming a central pilgrimage site for communists worldwide.
+
+Following the collapse of the Soviet Union, Red Square transitioned from a symbol of ideological might to a vibrant cultural and tourist destination. While still occasionally hosting military parades, it now frequently hosts concerts, ice-skating rinks in winter, and other public events. Flanked by iconic structures like the Kremlin, St. Basil's Cathedral, the State Historical Museum, and the GUM department store, Red Square remains a powerful testament to Russia's rich and complex past, a place where history continues to unfold daily. It was designated a UNESCO World Heritage site in 1990.</p>
+      </article>
+    </section>
+
+    <!-- Nearby places -->
+    <section class="section">
+      <h2 class="section-title">Nearby places</h2>
+      <div class="grid cards">
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">🏛️ Lenin's Mausoleum</div>
+          
+          <div class="nearby-distance">0.03 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Lenin%27s%20Mausoleum" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">📸 GUM Department Store</div>
+          
+          <div class="nearby-distance">0.14 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/GUM%20Department%20Store" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">📸 St. Basil's Cathedral</div>
+          
+          <div class="nearby-distance">0.17 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/St.%20Basil%27s%20Cathedral" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">📸 Kazan Cathedral</div>
+          
+          <div class="nearby-distance">0.2 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Kazan%20Cathedral" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">🏛️ State Historical Museum</div>
+          
+          <div class="nearby-distance">0.2 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/State%20Historical%20Museum" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">🌳 Alexander Garden (including Tomb of the Unknown Soldier)</div>
+          
+          <div class="nearby-distance">0.22 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Alexander%20Garden%20%28including%20Tomb%20of%20the%20Unknown%20Soldier%29" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">🏛️ Moscow Kremlin (visitor entrance via Kutafya Tower)</div>
+          
+          <div class="nearby-distance">0.36 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Moscow%20Kremlin%20%28visitor%20entrance%20via%20Kutafya%20Tower%29" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">🌳 Zaryadye Park (with Floating Bridge)</div>
+          
+          <div class="nearby-distance">0.46 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Zaryadye%20Park%20%28with%20Floating%20Bridge%29" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">📸 Bolshoi Theatre</div>
+          
+          <div class="nearby-distance">0.75 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Bolshoi%20Theatre" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+        <article class="card nearby-item">
+          <div class="nearby-name">📸 Cathedral of Christ the Saviour</div>
+          
+          <div class="nearby-distance">1.56 km away</div>
+          
+          <a class="btn" href="https://www.google.com/maps/search/Cathedral%20of%20Christ%20the%20Saviour" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery">
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1664471943144-427ee325e076?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Mira Kireeva" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559890133-39d1c3021d9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558615758-83b17f3b26e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559031230-b99456c7da6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1710165156106-8e9a5bf91047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Andrey Vavilkin" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558338294-e2d7ada36396?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Artis Butkevics" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558509336-44482918b852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558962478-49bfc31b3a08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558509336-c38c4bdcbf6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxSZWQlMjBTcXVhcmUlMkMlMjBSdXNzaWF8ZW58MHx8fHwxNzY1MTk0NzY5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Anastasiya Romanova" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1648383249647-528ecf4fdacb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8UmVkJTIwU3F1YXJlJTJDJTIwUnVzc2lhfGVufDB8fHx8MTc2NTE5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Vlad ION" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1720653540371-c1d25411c3b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8UmVkJTIwU3F1YXJlJTJDJTIwUnVzc2lhfGVufDB8fHx8MTc2NTE5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Hugo Cornuel" loading="lazy" />
+        </figure>
+        
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1648383249833-f63103761858?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8UmVkJTIwU3F1YXJlJTJDJTIwUnVzc2lhfGVufDB8fHx8MTc2NTE5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Red Square, Russia - Vlad ION" loading="lazy" />
+        </figure>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Travel Guide Bot • Discover Every Place
+  </footer>
+</body>
+</html>
