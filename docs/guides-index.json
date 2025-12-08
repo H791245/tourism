@@ -1,1 +1,49 @@
-
+{
+  "Belgi\u00eb ": {},
+  "Civitas Vaticana   Citt\u00e0 Del Vaticano": {
+    "Vatican City Vatican City": 1
+  },
+  "Danmark": {
+    "Christiania Copenhagen Denmark": 1,
+    "The Little Mermaid Denmark": 1
+  },
+  "Deutschland": {
+    "Berlin Wall Germany": 1
+  },
+  "Italia": {
+    "Colosseum Rome Italy": 1,
+    "Pantheon Rome Italy": 1,
+    "Pantheon Rome": 1
+  },
+  "Nederland": {
+    "Anne Frank House Amsterdam": 1,
+    "Best Netherlands": 1,
+    "Dam Square Amsterdam Netherlands": 1,
+    "Eindhoven Netherlands": 1,
+    "Eindhoven": 1,
+    "Evoluon Eindhoven The Netherlands": 1,
+    "Genneper Park Eindhoven Netherlands": 1
+  },
+  "Sverige": {
+    "G\u00f6teborg Sweden": 1,
+    "Lipstick Building Goteborg Sweden.": 1
+  },
+  "United States": {
+    "Central Park New York Usa": 1,
+    "Golden Gate Bridge Us": 1,
+    "Rockefeller Center New York Usa": 1
+  },
+  "\u0395\u03bb\u03bb\u03ac\u03c2": {
+    "Acropolis Greece": 1
+  },
+  "\u0420\u043e\u0441\u0441\u0438\u044f": {
+    "Red Square Russia": 1
+  },
+  "\u0422\u043e\u04b7\u0438\u043a\u0438\u0441\u0442\u043e\u043d": {
+    "Dushanbe Tajikistan": 1
+  },
+  "\u0627\u06cc\u0631\u0627\u0646": {
+    "Azadi Square Tehran Iran": 1,
+    "Park Koohsangi Mashhad Iran": 1
+  }
+}
