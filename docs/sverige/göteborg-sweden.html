@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Göteborg, Sweden - Travel Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1756960827354-48601dce30ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .history {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .best-time {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .places-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .place-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .place-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .place-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .place-name {
+            font-weight: bold;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+
+        .place-distance {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .maps-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .maps-link:hover {
+            background: #764ba2;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .images-gallery, .places-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Göteborg, Sweden</h1>
+        
+        <p>Located on the west coast of Sweden, at the head of the Gothenburg Archipelago</p>
+        
+    </header>
+
+    <div class="container">
+        <!-- History Section -->
+        <div class="section">
+            <h2>📚 History & Background</h2>
+            <p class="history">Founded in 1621 as a Swedish naval base and trading post. The city's strategic location on the west coast of Sweden made it an important hub for trade and commerce during the 17th and 18th centuries. In the 19th century, Göteborg underwent rapid industrialization, becoming one of the main centers for shipbuilding, textiles, and engineering in Scandinavia.</p>
+        </div>
+
+        <!-- Facts Section -->
+        <div class="section">
+            <h2>✨ Key Facts</h2>
+            <div class="facts-grid">
+                
+                <div class="fact-card">
+                    <strong>1.</strong> Göteborg is Sweden's second-largest city, with a population of around 580,000
+                </div>
+                
+                <div class="fact-card">
+                    <strong>2.</strong> The city has a rich cultural scene, with numerous museums, galleries, and festivals throughout the year
+                </div>
+                
+                <div class="fact-card">
+                    <strong>3.</strong> Göteborg is home to Chalmers University of Technology and the University of Gothenburg
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Best Time Section -->
+        <div class="section">
+            <h2>🌞 Best Time to Visit</h2>
+            <div class="best-time">
+                <p><strong>Recommended Season:</strong> {'season': 'Summer (June to August)', 'description': 'The best time to visit Göteborg for pleasant weather and long days, with average highs around 22°C (72°F)'}</p>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="section">
+            <h2>📸 Gallery</h2>
+            <div class="images-gallery">
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1756960827354-48601dce30ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Tegan Conway" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Tegan Conway</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1728132282732-bc4433aaa231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Joe Allan" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Joe Allan</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1704589845458-da268976294c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Jeet Datta" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Jeet Datta</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1723731088721-11991781ed19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Jakub Vavra" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Jakub Vavra</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1715756602897-a4e270977059?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Carl Malmer" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Carl Malmer</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1655935184387-4aed5bbe4fe7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Vipinkumar Yamuna Babukuttan" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Vipinkumar Yamuna Babukuttan</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1718174541071-d54e1a7a9afb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Damir Korotaj" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Damir Korotaj</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1710449827035-e6d62b0fca0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Philip Myrtorp" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Philip Myrtorp</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1719567554158-c9511e3d77d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxHJUMzJUI2dGVib3JnJTJDJTIwU3dlZGVufGVufDB8fHx8MTc2NTIwMTA5MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Damir Korotaj" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Damir Korotaj</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1718727604906-0323fa4fe294?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8RyVDMyVCNnRlYm9yZyUyQyUyMFN3ZWRlbnxlbnwwfHx8fDE3NjUyMDEwOTB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Niyaz Ahmed" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Niyaz Ahmed</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1628334327956-5881c4ded609?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8RyVDMyVCNnRlYm9yZyUyQyUyMFN3ZWRlbnxlbnwwfHx8fDE3NjUyMDEwOTB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Philip Myrtorp" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Philip Myrtorp</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1696725235372-b3985d59d7fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8RyVDMyVCNnRlYm9yZyUyQyUyMFN3ZWRlbnxlbnwwfHx8fDE3NjUyMDEwOTB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Göteborg, Sweden - Helga Pettersen" loading="lazy">
+                    <div class="image-title">Göteborg, Sweden - Helga Pettersen</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Nearby Places Section -->
+        
+        <div class="section">
+            <h2>🗺️ Nearby Attractions</h2>
+            <div class="places-list">
+                
+                <div class="place-card">
+                    <div class="place-icon">🍽️</div>
+                    <div class="place-name">Magasinsgatan</div>
+                    
+                    <div class="place-distance">0.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Magasinsgatan" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🎢</div>
+                    <div class="place-name">Liseberg</div>
+                    
+                    <div class="place-distance">1.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Liseberg" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Göteborgs Konstmuseum (Gothenburg Museum of Art)</div>
+                    
+                    <div class="place-distance">2.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/G%C3%B6teborgs%20Konstmuseum%20%28Gothenburg%20Museum%20of%20Art%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🌳</div>
+                    <div class="place-name">Trädgårdsföreningen</div>
+                    
+                    <div class="place-distance">2.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Tr%C3%A4dg%C3%A5rdsf%C3%B6reningen" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🛍️</div>
+                    <div class="place-name">Nordiska Kompaniet (NK)</div>
+                    
+                    <div class="place-distance">3.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Nordiska%20Kompaniet%20%28NK%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📚</div>
+                    <div class="place-name">Göteborgs Universitet (University of Gothenburg)</div>
+                    
+                    <div class="place-distance">3.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/G%C3%B6teborgs%20Universitet%20%28University%20of%20Gothenburg%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🛥️</div>
+                    <div class="place-name">Maritiman</div>
+                    
+                    <div class="place-distance">4.2 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Maritiman" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Linnéplatsen (Linnaeus Square)</div>
+                    
+                    <div class="place-distance">5.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Linn%C3%A9platsen%20%28Linnaeus%20Square%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">☕</div>
+                    <div class="place-name">Kungsportsavenyn (Kungsgatan)</div>
+                    
+                    <div class="place-distance">6.3 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Kungsportsavenyn%20%28Kungsgatan%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🍽️</div>
+                    <div class="place-name">Göteborgs Saluhall (Gothenburg Market Hall)</div>
+                    
+                    <div class="place-distance">7.2 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/G%C3%B6teborgs%20Saluhall%20%28Gothenburg%20Market%20Hall%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        <!-- Map Section -->
+        <div class="section">
+            <h2>📍 Location on Map</h2>
+            <iframe width="100%" height="400" style="border: none; border-radius: 8px;"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDlPn1j6V8Sd5VYNMWRbHCe89-eRRU2qBs&q=57.7072326,11.9670171&zoom=12">
+            </iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Travel Guide Bot. All rights reserved.</p>
+        <p>Generated with ❤️ using Ollama & Unsplash</p>
+    </footer>
+</body>
+</html>
