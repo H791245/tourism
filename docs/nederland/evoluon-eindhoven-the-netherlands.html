@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evoluon, Eindhoven, The Netherlands - Travel Guide</title>
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f4;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --border-color: #e0e0e0;
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --card-bg: white;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #404040;
+            --accent-primary: #7b7fff;
+            --accent-secondary: #9970d4;
+            --card-bg: #2a2a2a;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,24 +38,45 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f4f4f4;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             padding: 3rem 0;
             text-align: center;
             background-image: url('https://images.unsplash.com/photo-1551039226-821e296bdd9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxFdm9sdW9uJTJDJTIwRWluZGhvdmVuJTJDJTIwVGhlJTIwTmV0aGVybGFuZHN8ZW58MHx8fHwxNzY1MjAzNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080');
             background-size: cover;
             background-blend-mode: overlay;
+            position: relative;
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: clamp(1.5rem, 5vw, 3rem);
             margin-bottom: 0.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         .container {
@@ -41,29 +86,31 @@
         }
 
         .section {
-            background: white;
+            background: var(--card-bg);
             margin: 2rem auto;
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
         }
 
         h2 {
-            color: #667eea;
+            color: var(--accent-primary);
             margin-bottom: 1rem;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid var(--accent-primary);
             padding-bottom: 0.5rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
         }
 
         h3 {
-            color: #764ba2;
+            color: var(--accent-secondary);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
         .history {
             line-height: 1.8;
-            color: #555;
+            color: var(--text-secondary);
             text-align: justify;
         }
 
@@ -75,16 +122,22 @@
         }
 
         .fact-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
         }
 
         .best-time {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background: var(--accent-primary);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border-left: 4px solid var(--accent-primary);
             padding: 1.5rem;
             margin: 1rem 0;
             border-radius: 4px;
@@ -92,7 +145,7 @@
 
         .images-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -101,7 +154,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .image-item img {
@@ -109,6 +162,7 @@
             height: 250px;
             object-fit: cover;
             transition: transform 0.3s ease;
+            display: block;
         }
 
         .image-item:hover img {
@@ -134,16 +188,17 @@
         }
 
         .place-card {
-            background: #f9f9f9;
-            border: 2px solid #e0e0e0;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
             padding: 1.5rem;
             border-radius: 8px;
             transition: all 0.3s ease;
         }
 
         .place-card:hover {
-            border-color: #667eea;
+            border-color: var(--accent-primary);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
         }
 
         .place-icon {
@@ -153,12 +208,12 @@
 
         .place-name {
             font-weight: bold;
-            color: #333;
+            color: var(--text-primary);
             margin: 0.5rem 0;
         }
 
         .place-distance {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.9rem;
             margin: 0.5rem 0;
         }
@@ -167,19 +222,21 @@
             display: inline-block;
             margin-top: 1rem;
             padding: 0.5rem 1rem;
-            background: #667eea;
+            background: var(--accent-primary);
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .maps-link:hover {
-            background: #764ba2;
+            background: var(--accent-secondary);
+            transform: scale(1.05);
         }
 
         footer {
-            background: #333;
+            background: var(--text-primary);
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
             color: white;
             text-align: center;
             padding: 2rem;
@@ -188,20 +245,52 @@
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .section {
+                margin: 1rem auto;
                 padding: 1.5rem;
             }
 
-            .images-gallery, .places-list {
+            .images-gallery, .places-list, .facts-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 0;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+
     <header>
         <h1>Evoluon, Eindhoven, The Netherlands</h1>
         
@@ -211,9 +300,13 @@
         <!-- History Section -->
         <div class="section">
             <h2>📚 History & Background</h2>
-            <p class="history">The Evoluon, a striking testament to post-war Dutch optimism and technological prowess, was conceived by the Philips electronics company and officially opened its doors in 1966. Designed by the visionary Philips creative director Louis Kalff, alongside architect Leo de Bever, its distinctive flying saucer shape quickly established it as an iconic landmark of Eindhoven and a marvel of modern architecture. Its initial purpose was groundbreaking: a permanent science and technology museum aimed at educating the public about Philips' diverse innovations and the broader marvels of scientific advancement. Visitors could interact with numerous exhibits covering topics from physics, chemistry, and biology to electronics, space travel, and human health, all presented in an engaging, futuristic manner. For over two decades, the Evoluon served as a powerful symbol of progress and innovation, attracting millions of visitors and cementing its place in Dutch cultural memory. It embodied Philips' deep commitment to research and development, vividly showcasing their vast contributions to modern living and inspiring future generations of engineers and scientists.
+            <p class="history">The Evoluon, a striking landmark in Eindhoven, was conceived by electronics giant Philips to commemorate its 75th anniversary in 1966. Designed by architect Louis Kalff and Leo de Bever, its distinctive flying saucer shape quickly made it an iconic symbol of the city and a testament to Philips' innovative spirit. The futuristic structure was intended to be a permanent interactive science and technology museum, showcasing Philips' contributions to science and industry, and educating the public on various scientific principles through engaging exhibits.
 
-However, by the early 1990s, the concept of interactive science museums had significantly evolved, and the Evoluon's original exhibits, though once cutting-edge, began to feel increasingly dated. The substantial cost of maintaining and continually updating the vast, specialized exhibition space proved challenging, leading to a noticeable decline in visitor numbers and public engagement. Consequently, Philips made the difficult decision to close the Evoluon as a public museum in 1993, a move that was met with considerable dismay by many who cherished its unique educational mission and nostalgic appeal. After a period of extensive redesign and functional adaptation, the magnificent building was given a new lease on life. In 1998, it triumphantly reopened, not as a museum, but as a state-of-the-art conference and event center. Today, the Evoluon continues to stand proudly, its instantly recognizable futuristic architecture a constant, powerful reminder of its innovative past and a vibrant beacon for modern gatherings, symbolizing Eindhoven's enduring legacy as a true city of technology and design.</p>
+For over two decades, the Evoluon served as a popular public attraction, drawing visitors from across the Netherlands and beyond. Its innovative exhibits explored topics ranging from physics and biology to the latest technological advancements, often featuring hands-on displays that were cutting-edge for their time. It embodied the optimism and belief in progress characteristic of the mid-20th century.
+
+However, by the late 1980s, public interest waned, exhibition concepts evolved, and the maintenance costs of the unique building became a challenge. In 1989, Philips decided to close the Evoluon as a public science museum. The building stood largely unused for several years, sparking local debate about its future and potential demolition.
+
+Fortunately, the Evoluon was saved and given a new lease on life. After extensive renovation, it reopened in 1996, transformed into a high-tech conference, convention, and event center. While it no longer functions as a daily public museum, its unique architecture continues to attract admiration, and it occasionally hosts public events, exhibitions, or themed weekends that harken back to its original educational mission. Today, it stands as a testament to Dutch design and a versatile venue at the heart of the Brainport region.</p>
         </div>
 
         <!-- Facts Section -->
@@ -222,19 +315,19 @@ However, by the early 1990s, the concept of interactive science museums had sign
             <div class="facts-grid">
                 
                 <div class="fact-card">
-                    <strong>1.</strong> The Evoluon was commissioned and built by Philips, designed by Philips' own creative director Louis Kalff and architect Leo de Bever.
+                    <strong>1.</strong> Its iconic flying saucer design was inspired by a spaceship and was meant to symbolize progress and future vision.
                 </div>
                 
                 <div class="fact-card">
-                    <strong>2.</strong> Its iconic flying saucer shape, often mistaken for a UFO, was conceived to symbolize the future and technological innovation.
+                    <strong>2.</strong> Built by Philips for its 75th anniversary in 1966, it initially served as an interactive science and technology museum.
                 </div>
                 
                 <div class="fact-card">
-                    <strong>3.</strong> Originally opened in 1966 as a cutting-edge science and technology museum, it now serves as a modern conference and event center.
+                    <strong>3.</strong> The dome of the Evoluon is an architectural marvel, featuring no internal support pillars, creating a vast, open interior space.
                 </div>
                 
                 <div class="fact-card">
-                    <strong>4.</strong> The building is surrounded by a large artificial pond, which further enhances its futuristic and isolated appearance.
+                    <strong>4.</strong> After closing as a public museum in 1989, it was repurposed and reopened in 1996 as a modern conference and event center.
                 </div>
                 
             </div>
@@ -244,7 +337,7 @@ However, by the early 1990s, the concept of interactive science museums had sign
         <div class="section">
             <h2>🌞 Best Time to Visit</h2>
             <div class="best-time">
-                <p><strong>Recommended Season:</strong> Spring (April to May) or early Autumn (September to October) offers pleasant weather for exploring Eindhoven and the building's exterior, avoiding the peak summer crowds and potential winter chill.</p>
+                <p><strong>Recommended Season:</strong> Spring (April-June) or early Autumn (September-October) offers pleasant weather for exploring Eindhoven and the surrounding area, with fewer crowds than peak summer.</p>
             </div>
         </div>
 
@@ -276,7 +369,7 @@ However, by the early 1990s, the concept of interactive science museums had sign
                     <div class="place-icon">📸</div>
                     <div class="place-name">Strijp-S</div>
                     
-                    <div class="place-distance">0.7 km away</div>
+                    <div class="place-distance">1.3 km away</div>
                     
                     <a href="https://www.google.com/maps/search/Strijp-S" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
@@ -285,11 +378,11 @@ However, by the early 1990s, the concept of interactive science museums had sign
                 
                 <div class="place-card">
                     <div class="place-icon">🏛️</div>
-                    <div class="place-name">Philips Stadion & PSV Museum</div>
+                    <div class="place-name">Philips Stadium / PSV Museum</div>
                     
-                    <div class="place-distance">1.4 km away</div>
+                    <div class="place-distance">1.6 km away</div>
                     
-                    <a href="https://www.google.com/maps/search/Philips%20Stadion%20%26%20PSV%20Museum" target="_blank" rel="noopener noreferrer" class="maps-link">
+                    <a href="https://www.google.com/maps/search/Philips%20Stadium%20/%20PSV%20Museum" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
                     </a>
                 </div>
@@ -298,7 +391,7 @@ However, by the early 1990s, the concept of interactive science museums had sign
                     <div class="place-icon">🏛️</div>
                     <div class="place-name">Philips Museum</div>
                     
-                    <div class="place-distance">2.0 km away</div>
+                    <div class="place-distance">2.1 km away</div>
                     
                     <a href="https://www.google.com/maps/search/Philips%20Museum" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
@@ -307,44 +400,11 @@ However, by the early 1990s, the concept of interactive science museums had sign
                 
                 <div class="place-card">
                     <div class="place-icon">📸</div>
-                    <div class="place-name">St. Catherine's Church (Catharinakerk)</div>
+                    <div class="place-name">Eindhoven City Center / Shopping Area</div>
                     
-                    <div class="place-distance">2.1 km away</div>
+                    <div class="place-distance">2.3 km away</div>
                     
-                    <a href="https://www.google.com/maps/search/St.%20Catherine%27s%20Church%20%28Catharinakerk%29" target="_blank" rel="noopener noreferrer" class="maps-link">
-                        View on Maps
-                    </a>
-                </div>
-                
-                <div class="place-card">
-                    <div class="place-icon">🍽️</div>
-                    <div class="place-name">De Bergen (Shopping & Dining District)</div>
-                    
-                    <div class="place-distance">2.4 km away</div>
-                    
-                    <a href="https://www.google.com/maps/search/De%20Bergen%20%28Shopping%20%26%20Dining%20District%29" target="_blank" rel="noopener noreferrer" class="maps-link">
-                        View on Maps
-                    </a>
-                </div>
-                
-                <div class="place-card">
-                    <div class="place-icon">🍽️</div>
-                    <div class="place-name">Stratumseind</div>
-                    
-                    <div class="place-distance">2.5 km away</div>
-                    
-                    <a href="https://www.google.com/maps/search/Stratumseind" target="_blank" rel="noopener noreferrer" class="maps-link">
-                        View on Maps
-                    </a>
-                </div>
-                
-                <div class="place-card">
-                    <div class="place-icon">🏛️</div>
-                    <div class="place-name">Van Abbemuseum</div>
-                    
-                    <div class="place-distance">2.6 km away</div>
-                    
-                    <a href="https://www.google.com/maps/search/Van%20Abbemuseum" target="_blank" rel="noopener noreferrer" class="maps-link">
+                    <a href="https://www.google.com/maps/search/Eindhoven%20City%20Center%20/%20Shopping%20Area" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
                     </a>
                 </div>
@@ -361,12 +421,12 @@ However, by the early 1990s, the concept of interactive science museums had sign
                 </div>
                 
                 <div class="place-card">
-                    <div class="place-icon">🌳</div>
-                    <div class="place-name">Genneper Parken</div>
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Van Abbemuseum</div>
                     
-                    <div class="place-distance">2.9 km away</div>
+                    <div class="place-distance">2.8 km away</div>
                     
-                    <a href="https://www.google.com/maps/search/Genneper%20Parken" target="_blank" rel="noopener noreferrer" class="maps-link">
+                    <a href="https://www.google.com/maps/search/Van%20Abbemuseum" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
                     </a>
                 </div>
@@ -375,9 +435,20 @@ However, by the early 1990s, the concept of interactive science museums had sign
                     <div class="place-icon">🏛️</div>
                     <div class="place-name">PreHistorisch Dorp</div>
                     
-                    <div class="place-distance">3.3 km away</div>
+                    <div class="place-distance">2.9 km away</div>
                     
                     <a href="https://www.google.com/maps/search/PreHistorisch%20Dorp" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🌳</div>
+                    <div class="place-name">Stadswandelpark</div>
+                    
+                    <div class="place-distance">3.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Stadswandelpark" target="_blank" rel="noopener noreferrer" class="maps-link">
                         View on Maps
                     </a>
                 </div>
@@ -389,7 +460,7 @@ However, by the early 1990s, the concept of interactive science museums had sign
         <!-- Map Section -->
         <div class="section">
             <h2>📍 Location on Map</h2>
-            <iframe width="100%" height="400" style="border: none; border-radius: 8px;"
+            <iframe width="100%" height="400" style="border: none; border-radius: 8px;" loading="lazy"
                 src="https://maps.google.com/maps?q=51.4435109,5.4468599&z=14&output=embed">
             </iframe>
         </div>
@@ -397,7 +468,30 @@ However, by the early 1990s, the concept of interactive science museums had sign
 
     <footer>
         <p>&copy; 2025 Travel Guide Bot. All rights reserved.</p>
-        <p>Generated with ❤️ using Ollama & Unsplash</p>
+        <p>Generated with ❤️ using Gemini & Unsplash</p>
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+        
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
 </body>
 </html>
