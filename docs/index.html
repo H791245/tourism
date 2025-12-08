@@ -71,31 +71,6 @@
             font-size: 1.1em;
         }
 
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: var(--brand);
-            color: white;
-            border-color: var(--brand);
-        }
-
         .search-box {
             width: 100%;
             max-width: 500px;
@@ -105,7 +80,8 @@
             background: var(--surface);
             color: var(--text);
             font-size: 14px;
-            margin-bottom: 30px;
+            margin: 0 auto 30px;
+            display: block;
         }
 
         .search-box::placeholder {
@@ -152,13 +128,16 @@
         }
 
         .city-item {
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 8px;
             background: rgba(59, 130, 246, 0.1);
             border-left: 3px solid var(--brand);
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
         .city-item:hover {
@@ -326,16 +305,18 @@
                 card.dataset.country = country.toLowerCase();
 
                 let citiesList = '';
-                let totalGuides = 0;
 
                 Object.entries(cities).forEach(([city, count]) => {
+                    const countrySlug = country.toLowerCase().replace(/\s+/g, '-');
+                    const citySlug = city.toLowerCase().replace(/\s+/g, '-');
+                    const guideUrl = `${countrySlug}/${citySlug}.html`;
+                    
                     citiesList += `
-                        <div class="city-item" data-city="${city.toLowerCase()}">
+                        <a href="${guideUrl}" class="city-item" data-city="${city.toLowerCase()}">
                             <div class="city-name">🏙️ ${city}</div>
                             <div class="location-count">${count} ${count === 1 ? 'guide' : 'guides'}</div>
-                        </div>
+                        </a>
                     `;
-                    totalGuides += count;
                 });
 
                 card.innerHTML = `
