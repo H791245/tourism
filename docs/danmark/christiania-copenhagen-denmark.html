@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Christiania, Copenhagen, Denmark • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1659628988805-71d94cd3c143?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1659628988805-71d94cd3c143?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">Spring (April-May) or Summer (June-August) for pleasant weather, lively outdoor activities, and the most vibrant atmosphere.</div>
+                <h1>Christiania, Copenhagen, Denmark</h1>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Christiania was founded in 1971 by squatters and hippies on abandoned military barracks.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">It is a self-proclaimed autonomous 'freetown' operating under its own set of community-decided rules.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Known for its unique, self-built architecture, vibrant street art, and eco-conscious lifestyle.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">'Pusher Street' was historically famous for the open trade of cannabis, though its status and enforcement vary significantly.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Home to a diverse community of around 800-1000 residents, numerous workshops, art galleries, cafes, and music venues.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>Christiania, officially known as Freetown Christiania, has a captivating history that began on September 26, 1971. It emerged from abandoned military barracks in the Christianshavn district of Copenhagen. A group of squatters, hippies, and idealists broke down the fences, occupying the disused site of Bådmandsstrædes Kaserne, seeking to establish an alternative society free from state control and conventional norms. Their vision was to create a self-governing community where individuality and collective living coexisted, focusing on environmentalism, peace, and communal ownership.
+
+From its inception, Christiania declared itself a "freetown," operating under its own set of rules, largely independent of Danish law. This radical experiment quickly drew international attention. Residents built their own homes, often using recycled materials, leading to the distinctive, eclectic architecture seen today. Throughout the decades, Christiania has maintained a fragile and often contentious relationship with the Danish government. While successive governments have attempted to dismantle or normalize it, Christiania has consistently resisted, embodying a tenacious spirit of autonomy.
+
+A central, and often controversial, aspect of Christiania's history has been "Pusher Street," an area historically known for the open sale of cannabis. This activity has been a constant source of friction with authorities, leading to raids and debates within the community itself. In a significant development in 2012, after years of legal battles, the residents collectively purchased the land from the Danish state, transforming its legal status from a squatted area to a self-governed community owning its property, albeit still under specific agreements with Copenhagen municipality. Today, Christiania remains a vibrant, evolving social experiment, a living testament to alternative lifestyles and enduring community spirit.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">☕ Nemoland</div>
+                    
+                    <div class="nearby-distance">0.2 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=55.6727811,12.6001646" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Church of Our Saviour (Vor Frelsers Kirke)</div>
+                    
+                    <div class="nearby-distance">0.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Church%20of%20Our%20Saviour%20%28Vor%20Frelsers%20Kirke%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Broens Gadekøkken (The Bridge Street Kitchen)</div>
+                    
+                    <div class="nearby-distance">0.7 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Broens%20Gadek%C3%B8kken%20%28The%20Bridge%20Street%20Kitchen%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ The Royal Danish Opera House (Operahuset)</div>
+                    
+                    <div class="nearby-distance">1.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/The%20Royal%20Danish%20Opera%20House%20%28Operahuset%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Nyhavn</div>
+                    
+                    <div class="nearby-distance">1.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Nyhavn" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Amalienborg Palace</div>
+                    
+                    <div class="nearby-distance">1.4 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Amalienborg%20Palace" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ The Marble Church (Marmorkirken)</div>
+                    
+                    <div class="nearby-distance">1.6 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/The%20Marble%20Church%20%28Marmorkirken%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Kongens Nytorv</div>
+                    
+                    <div class="nearby-distance">1.7 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Kongens%20Nytorv" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Strøget</div>
+                    
+                    <div class="nearby-distance">1.9 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Str%C3%B8get" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Rosenborg Castle & King's Garden</div>
+                    
+                    <div class="nearby-distance">2.2 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Rosenborg%20Castle%20%26%20King%27s%20Garden" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+        </section>
+        
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659628988805-71d94cd3c143?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Rocío Perera" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659628988863-f38ef8e1a0aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Rocío Perera" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1613868751911-1383d444b93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Shane Rounce" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1702981460698-b0115876db81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Martín Castañeda" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659628989776-5f66fba19afc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Rocío Perera" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1639477714370-787bb99cc70f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Veronika Leleka" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1714460097529-2fafd18cb6e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Martín Castañeda" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514805247710-f366412e1f73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Shane Rounce" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1628526293223-baa74b64649a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxDaHJpc3RpYW5pYSUyQyUyMENvcGVuaGFnZW4lMkMlMjBEZW5tYXJrfGVufDB8fHx8MTc2NTIwNTc0OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Sedki Alimam" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1713174688624-49019146ebdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8Q2hyaXN0aWFuaWElMkMlMjBDb3BlbmhhZ2VuJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDU3NDh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Martín Castañeda" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1715095565418-d57f5b99fe1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8Q2hyaXN0aWFuaWElMkMlMjBDb3BlbmhhZ2VuJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDU3NDh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Austin Curtis" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1729200557365-a8376879f039?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8Q2hyaXN0aWFuaWElMkMlMjBDb3BlbmhhZ2VuJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDU3NDh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Christiania, Copenhagen, Denmark - Julia Oberhauser" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=55.675737,12.6075707&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fa', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Auto-detect language change and set dir attribute
+        function checkLanguage() {
+            const googleTranslateElement = document.querySelector('.goog-te-combo');
+            if (googleTranslateElement) {
+                const selectedLang = googleTranslateElement.value;
+                if (selectedLang === 'fa') {
+                    html.setAttribute('dir', 'rtl');
+                } else {
+                    html.removeAttribute('dir');
+                }
+            }
+            setTimeout(checkLanguage, 500);
+        }
+
+        // Start checking for language changes after a delay
+        setTimeout(checkLanguage, 1000);
+    </script>
+</body>
+</html>
