@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Little Mermaid, Denmark • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1699115085702-c930b67bcc75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1699115085702-c930b67bcc75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">The best time to visit The Little Mermaid is during the summer months (June to August). The weather in Copenhagen is typically mild and pleasant, with longer daylight hours, making it ideal for strolling along the waterfront and enjoying outdoor attractions. While it's the busiest tourist season, the lively atmosphere adds to the experience. Shoulder seasons like late spring (May) or early autumn (September) also offer good weather with fewer crowds.</div>
+                <h1>The Little Mermaid, Denmark</h1>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The statue is surprisingly small, standing only 1.25 meters (4.1 feet) tall and weighing around 175 kg (385 lbs).</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The sculptor, Edvard Eriksen, used his wife, Eline Eriksen, as the model for the mermaid's body, as the prima ballerina who inspired the commission refused to pose nude.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Little Mermaid has been the victim of numerous acts of vandalism over the years, including being decapitated twice, having an arm removed, and being doused in paint, but has always been restored.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">She was temporarily moved for the first time in 2010 to be exhibited at the Shanghai World Expo in China, marking her only journey away from Denmark.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>The iconic Little Mermaid statue, perched gracefully on a rock in Copenhagen's harbor, owes its existence to Danish fairy tale author Hans Christian Andersen, who published "The Little Mermaid" in 1837. The beloved story captured the imagination of many, including Carl Jacobsen, the son of the founder of Carlsberg Breweries. Deeply moved by a ballet performance based on Andersen's tale at the Royal Danish Theatre in 1909, Jacobsen was inspired to commission a sculpture that would immortalize the poignant character.
+
+He enlisted sculptor Edvard Eriksen for the task. Eriksen created the bronze statue, taking inspiration for the mermaid's head from ballerina Ellen Price, who danced the lead role in the ballet. However, Price declined to pose nude, so Eriksen's wife, Eline Eriksen, famously modeled for the mermaid's body. The statue, depicting the mermaid gazing longingly at the shore, was completed and gifted to the city of Copenhagen by Jacobsen.
+
+Unveiled on August 23, 1913, at the Langelinie promenade, the statue quickly became a symbol of Copenhagen and one of Denmark's most famous landmarks. Despite its seemingly tranquil presence, The Little Mermaid has endured a tumultuous history marked by numerous acts of vandalism. She has been decapitated twice (in 1964 and 1998), had an arm severed, been painted various colors, and even been blasted off her rock and into the water. Each time, however, she has been painstakingly restored, steadfastly returning to her contemplative perch, much to the delight of millions of tourists who visit her annually. Her enduring presence makes her a poignant testament to the resilience of art and a beloved cultural icon.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Langelinie Park</div>
+                    
+                    <div class="nearby-distance">0.1 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Langelinie%20Park" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Gefion Fountain</div>
+                    
+                    <div class="nearby-distance">0.2 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Gefion%20Fountain" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 St. Alban's Church (English Church)</div>
+                    
+                    <div class="nearby-distance">0.3 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/St.%20Alban%27s%20Church%20%28English%20Church%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Kastellet (The Citadel)</div>
+                    
+                    <div class="nearby-distance">0.4 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Kastellet%20%28The%20Citadel%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Amalienborg Palace</div>
+                    
+                    <div class="nearby-distance">1.1 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Amalienborg%20Palace" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Frederik's Church (Marmorkirken)</div>
+                    
+                    <div class="nearby-distance">1.2 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Frederik%27s%20Church%20%28Marmorkirken%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 The Royal Danish Playhouse (Skuespilhuset)</div>
+                    
+                    <div class="nearby-distance">1.3 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/The%20Royal%20Danish%20Playhouse%20%28Skuespilhuset%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Nyhavn</div>
+                    
+                    <div class="nearby-distance">1.6 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Nyhavn" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Rosenborg Castle</div>
+                    
+                    <div class="nearby-distance">1.9 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Rosenborg%20Castle" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ National Gallery of Denmark (SMK)</div>
+                    
+                    <div class="nearby-distance">2.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/National%20Gallery%20of%20Denmark%20%28SMK%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+        </section>
+        
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1699115085702-c930b67bcc75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Andrew Ebrahim" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558693195-f4c0e43a0046?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Jose Manuel Alonso de Caso" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1573386843695-7d98e77ad72b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - K. Mitch Hodge" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1762571919512-e22bdc7ee243?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - flickch" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1578488802913-37289594f049?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Falco Negenman" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1724622557691-399ea6c6d7f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Alexander Kovalev" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1557868263-664b79d26c12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Victor Malyushev" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1757671024555-a64d9a01ae5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - VINCENZO INZONE" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1688652927921-bced3597d8ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxUaGUlMjBMaXR0bGUlMjBNZXJtYWlkJTJDJTIwRGVubWFya3xlbnwwfHx8fDE3NjUyMDUxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Olena Karlyk" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1709719570552-fa6cdb6e2c2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8VGhlJTIwTGl0dGxlJTIwTWVybWFpZCUyQyUyMERlbm1hcmt8ZW58MHx8fHwxNzY1MjA1MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Sarah" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1640504440553-96fedc0b6644?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8VGhlJTIwTGl0dGxlJTIwTWVybWFpZCUyQyUyMERlbm1hcmt8ZW58MHx8fHwxNzY1MjA1MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - reza hoque" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1732841020088-0b0713d90ea4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8VGhlJTIwTGl0dGxlJTIwTWVybWFpZCUyQyUyMERlbm1hcmt8ZW58MHx8fHwxNzY1MjA1MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="The Little Mermaid, Denmark - Alireza Banijani" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=55.6928661,12.5992896&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fa', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
