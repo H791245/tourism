@@ -309,7 +309,7 @@
                 Object.entries(cities).forEach(([city, count]) => {
                     const countrySlug = country.toLowerCase().replace(/\s+/g, '-');
                     const citySlug = city.toLowerCase().replace(/\s+/g, '-');
-                    const guideUrl = `${countrySlug}/${citySlug}.html`;
+                    const guideUrl = `./${countrySlug}/${citySlug}.html`;
                     
                     citiesList += `
                         <a href="${guideUrl}" class="city-item" data-city="${city.toLowerCase()}">
