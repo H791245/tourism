@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantheon, Rome, Italy - Travel Guide</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f4;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --border-color: #e0e0e0;
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --card-bg: white;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #404040;
+            --accent-primary: #7b7fff;
+            --accent-secondary: #9970d4;
+            --card-bg: #2a2a2a;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1677352926595-221e1c137b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080');
+            background-size: cover;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            margin: 2rem auto;
+            padding: clamp(1.5rem, 4vw, 2rem);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-primary);
+            padding-bottom: 0.5rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+        }
+
+        h3 {
+            color: var(--accent-secondary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .history {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .best-time {
+            background: var(--accent-primary);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .places-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .place-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .place-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .place-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .place-name {
+            font-weight: bold;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+
+        .place-distance {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .maps-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .maps-link:hover {
+            background: var(--accent-secondary);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: var(--text-primary);
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                margin: 1rem auto;
+                padding: 1.5rem;
+            }
+
+            .images-gallery, .places-list, .facts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 0;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+
+    <header>
+        <h1>Pantheon, Rome, Italy</h1>
+        
+        <p>The Pantheon is situated in the charming Piazza della Rotonda, a bustling square alive with street artists, cafes, and restaurants. In front of the Pantheon stands a beautiful fountain topped with an ancient Egyptian obelisk, added in the 18th century. The surrounding area is quintessential Rome, with narrow cobblestone streets leading to other major attractions like Piazza Navona (a 5-minute walk), the Trevi Fountain (a 10-minute walk), and the Largo di Torre Argentina cat sanctuary (a 7-minute walk). It's an ideal spot to grab a gelato, enjoy an espresso, or dine al fresco.</p>
+        
+    </header>
+
+    <div class="container">
+        <!-- History Section -->
+        <div class="section">
+            <h2>📚 History & Background</h2>
+            <p class="history">The Pantheon, an architectural marvel in the heart of Rome, stands as a testament to the engineering prowess of the Roman Empire. Originally conceived as a temple dedicated to 'all gods' (Pan-theon), its current incarnation was completed around 126 AD during the reign of Emperor Hadrian, likely after two earlier structures on the site were destroyed by fire. The first Pantheon was built by Marcus Vipsanius Agrippa in 27 BC, and though his original inscription from that structure is preserved on the current facade, the genius behind the monumental concrete dome belongs to Hadrian's architects. This dome, crafted from ever-lighter aggregate towards its apex, remains the largest unreinforced concrete dome in the world, a feat unsurpassed for centuries and a marvel of Roman engineering. Its immense interior space, a perfect sphere with the dome's diameter precisely matching its interior height, is illuminated solely by the 'oculus' – a 9-meter diameter opening at the dome's apex. This opening serves as its only light source and an symbolic connection to the heavens, allowing sunlight to dramatically sweep across its interior throughout the day, marking the passage of time.
+
+What truly secured the Pantheon's survival through millennia was its conversion into a Christian church, Santa Maria ad Martyres, in 609 AD by Pope Boniface IV. This transformation protected it from the ravages of time, neglect, and the plunder that befell many other ancient Roman structures, though it did lose its original bronze roof tiles to Pope Urban VIII, who famously melted them down for the baldachin in St. Peter's Basilica. Over the centuries, it became a sacred burial site for prominent Italians, including the renowned Renaissance artist Raphael and the first two kings of unified Italy, Vittorio Emanuele II and Umberto I, cementing its place in both religious and national history. The Pantheon's design, particularly its awe-inspiring dome and harmonious proportions, profoundly influenced Western architecture from the Renaissance to Neoclassicism, continuing to inspire architects and captivate visitors with its enduring legacy. It remains an active basilica, welcoming millions annually, and stands as one of Rome's most iconic and best-preserved ancient monuments.</p>
+        </div>
+
+        <!-- Facts Section -->
+        <div class="section">
+            <h2>✨ Key Facts</h2>
+            <div class="facts-grid">
+                
+                <div class="fact-card">
+                    <strong>1.</strong> The dome of the Pantheon is the largest unreinforced concrete dome in the world, a title it has held for nearly 2,000 years.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>2.</strong> The diameter of the dome is exactly equal to the interior height of the building (43.3 meters or 142 feet), meaning a perfect sphere could fit within its interior.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>3.</strong> The oculus, the 9-meter wide opening at the top of the dome, is the building's only source of direct natural light and also allows rain to fall directly into the building, which is managed by an ingenious drainage system of 22 holes in the floor.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>4.</strong> It was converted into a Christian church in 609 AD, a decision that saved it from destruction and ensured its remarkable preservation compared to many other ancient Roman buildings.
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Best Time Section -->
+        <div class="section">
+            <h2>🌞 Best Time to Visit</h2>
+            <div class="best-time">
+                <p><strong>Recommended Season:</strong> Spring (April to May) and Autumn (September to October) offer pleasant weather, fewer crowds than peak summer, and comfortable temperatures for exploring. Early mornings or late afternoons are best to avoid the busiest times, especially if you wish to capture photographs of the interior light.</p>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="section">
+            <h2>📸 Gallery</h2>
+            <div class="images-gallery">
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1677352926595-221e1c137b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Anton Lucian" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Anton Lucian</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1724795022144-878a64f79e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - André Eusébio" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - André Eusébio</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1746170245473-34699390f7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - ardin vermeulen" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - ardin vermeulen</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1662279321472-0453c473bf2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Julie" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Julie</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1704921740881-dd6c9ac6bf0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Burak Kantarci" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Burak Kantarci</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1684271635958-5db3cd5a39c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - YU CONG" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - YU CONG</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1704921740886-0e5025c43021?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Burak Kantarci" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Burak Kantarci</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1660247839998-7963648717ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Georges Toiansky" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Georges Toiansky</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1669874119583-01714d5217e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxQYW50aGVvbiUyQyUyMFJvbWUlMkMlMjBJdGFseXxlbnwwfHx8fDE3NjUyMDQyMDV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Wenhu Li" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Wenhu Li</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1602547616946-f91cc4b32aef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8UGFudGhlb24lMkMlMjBSb21lJTJDJTIwSXRhbHl8ZW58MHx8fHwxNzY1MjA0MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Taylor Smith" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Taylor Smith</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1699361233748-83d72473e5c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8UGFudGhlb24lMkMlMjBSb21lJTJDJTIwSXRhbHl8ZW58MHx8fHwxNzY1MjA0MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Hongbin" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Hongbin</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1676371811453-a66ee478757c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8UGFudGhlb24lMkMlMjBSb21lJTJDJTIwSXRhbHl8ZW58MHx8fHwxNzY1MjA0MjA1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantheon, Rome, Italy - Rémy Venturini" loading="lazy">
+                    <div class="image-title">Pantheon, Rome, Italy - Rémy Venturini</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Nearby Places Section -->
+        
+        <div class="section">
+            <h2>🗺️ Nearby Attractions</h2>
+            <div class="places-list">
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Piazza della Rotonda</div>
+                    
+                    <div class="place-distance">0.05 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Piazza%20della%20Rotonda" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Basilica di Santa Maria sopra Minerva</div>
+                    
+                    <div class="place-distance">0.15 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Basilica%20di%20Santa%20Maria%20sopra%20Minerva" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Piazza Navona</div>
+                    
+                    <div class="place-distance">0.35 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Piazza%20Navona" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Trevi Fountain</div>
+                    
+                    <div class="place-distance">0.7 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Trevi%20Fountain" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Campo de' Fiori</div>
+                    
+                    <div class="place-distance">0.75 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Campo%20de%27%20Fiori" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Galleria Doria Pamphilj</div>
+                    
+                    <div class="place-distance">0.8 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Galleria%20Doria%20Pamphilj" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Capitoline Museums (Musei Capitolini)</div>
+                    
+                    <div class="place-distance">1.0 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Capitoline%20Museums%20%28Musei%20Capitolini%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Altare della Patria (Victor Emmanuel II Monument)</div>
+                    
+                    <div class="place-distance">1.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Altare%20della%20Patria%20%28Victor%20Emmanuel%20II%20Monument%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Roman Forum & Palatine Hill</div>
+                    
+                    <div class="place-distance">1.3 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Roman%20Forum%20%26%20Palatine%20Hill" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Spanish Steps (Piazza di Spagna)</div>
+                    
+                    <div class="place-distance">1.5 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Spanish%20Steps%20%28Piazza%20di%20Spagna%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        <!-- Map Section -->
+        <div class="section">
+            <h2>📍 Location on Map</h2>
+            <iframe width="100%" height="400" style="border: none; border-radius: 8px;" loading="lazy"
+                src="https://maps.google.com/maps?q=41.898616,12.4768334&z=14&output=embed">
+            </iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Travel Guide Bot. All rights reserved.</p>
+        <p>Generated with ❤️ using Gemini & Unsplash</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+        
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
