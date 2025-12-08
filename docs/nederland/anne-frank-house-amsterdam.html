@@ -1,279 +1,811 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>anne frank house, amsterdam • Travel Guide</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>anne frank house, amsterdam • Travel Guide</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <!-- Leaflet for interactive pins (no API key) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="" crossorigin="" />
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="" crossorigin=""></script>
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
 
-  <style>
-    :root {
-      /* Light (default) */
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --text: #0f172a;
-      --muted: #64748b;
-      --brand: #0ea5e9;
-      --brand-2: #22c55e;
-      --radius: 16px;
-      --gap: 16px;
-      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
-    }
-    body.dark {
-      /* Dark */
-      --bg: #0a0f1d;
-      --surface: #0b1224;
-      --card: #0b1224;
-      --border: #1f2a44;
-      --text: #e5e7eb;
-      --muted: #9aa6c1;
-      --brand: #3b82f6;
-      --brand-2: #22d3ee;
-      --shadow: 0 18px 45px rgba(15, 23, 42, .45);
-    }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%;height:auto}
-    .container{max-width:1040px;margin:0 auto;padding:20px 16px 32px}
+        * {
+            box-sizing: border-box;
+        }
 
-    .hero{
-      position:sticky;top:0;z-index:10;
-      background:linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#fff;border-bottom:1px solid rgba(255,255,255,.2);box-shadow:var(--shadow);
-    }
-    .hero-inner{position:relative;min-height:220px;padding:22px 16px 24px;display:grid;align-items:flex-end}
-    .hero-media{
-      position:absolute;inset:0;z-index:-1;opacity:.25;
-      background-image:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.55)), url('https://images.unsplash.com/photo-1660856514089-eba86d271cc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080');
-      background-size:cover;background-position:center;
-    }
-    h1{margin:0 0 6px;font-size:clamp(24px,4.5vw,40px);line-height:1.08;letter-spacing:-.02em}
-    .sub{font-size:14px;opacity:.95}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;font-size:12px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(10px);margin-bottom:10px}
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
 
-    .theme-toggle{
-      position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:6px;
-      background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.35);
-      height:36px;padding:0 12px;border-radius:999px;cursor:pointer;font-size:13px;backdrop-filter:blur(10px)
-    }
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
 
-    .section{padding:24px 0 4px}
-    .section-title{font-size:16px;font-weight:600;margin:0 0 10px}
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
 
-    .grid{display:grid;gap:var(--gap)}
-    .grid.cards{grid-template-columns:1fr}
-    @media(min-width:720px){.grid.cards{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:1040px){.grid.cards{grid-template-columns:repeat(3,1fr)}}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
-      transition:transform .18s ease, box-shadow .18s ease;
-    }
-    .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(2,6,23,.12)}
-    .card-title{font-size:14px;font-weight:600;margin:0 0 6px}
-    .muted{color:var(--muted);font-size:13px;line-height:1.55}
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
 
-    .history{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:18px}
-    .history h2{margin:0 0 8px;font-size:17px}
-    .history p{margin:0;color:var(--text);opacity:.9;line-height:1.7}
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
 
-    .nearby-item{display:flex;flex-direction:column;gap:8px}
-    .nearby-name{font-weight:600;font-size:14px}
-    .nearby-distance{font-size:13px;color:var(--muted)}
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
 
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:0 14px;height:44px;border:0;
-      font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow);cursor:pointer;
-      transition:transform .16s ease, filter .16s ease;
-    }
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
 
-    .gallery{display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
-    .gallery::-webkit-scrollbar{height:6px}.gallery::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
-    @media(min-width:720px){.gallery{grid-auto-columns:31%}}
-    .gallery-item{scroll-snap-align:center;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-    .gallery-item img{width:100%;height:190px;object-fit:cover}
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
 
-    .map-card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-    .map-embed{width:100%;height:360px;border:0}
-    #poiMap{width:100%;height:360px}
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
 
-    footer{padding:26px 16px 32px;text-align:center;font-size:12px;color:var(--muted)}
-  </style>
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1660856514089-eba86d271cc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1660856514089-eba86d271cc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-media" aria-hidden="true"></div>
-    <div class="container hero-inner">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☀️ / 🌙</button>
-      <div>
-        <div class="pill">Best time: Spring to Fall</div>
-        <h1>anne frank house, amsterdam</h1>
-        
-      </div>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL/LTR">→‎←</button>
+        <div id="google_translate_element"></div>
     </div>
-  </header>
 
-  <main class="container">
-    <!-- Quick facts -->
-    <section class="section">
-      <h2 class="section-title">Highlights</h2>
-      <div class="grid cards">
-        
-        <article class="card">
-          <h3 class="card-title">Did you know?</h3>
-          <p class="muted">Historic landmark</p>
-        </article>
-        
-        <article class="card">
-          <h3 class="card-title">Did you know?</h3>
-          <p class="muted">Popular tourist destination</p>
-        </article>
-        
-        <article class="card">
-          <h3 class="card-title">Did you know?</h3>
-          <p class="muted">Worth visiting</p>
-        </article>
-        
-      </div>
-    </section>
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">Spring (April-May) and Autumn (September-October) offer pleasant weather and fewer crowds compared to the peak summer months. Visiting early in the morning or late in the afternoon, regardless of the season, can also help avoid the busiest times, though booking well in advance is essential as tickets often sell out months ahead.</div>
+                <h1>anne frank house, amsterdam</h1>
+                
+                <p class="sub">The Anne Frank House is centrally located in Amsterdam's historic Jordaan district, directly on the Prinsengracht canal. It's easily accessible on foot from many city center attractions, including Dam Square and the Royal Palace, and well-connected by Amsterdam's tram and bus network. The famous Westerkerk (Wester Church), whose bells Anne Frank wrote about hearing from her hiding place, is just around the corner. The surrounding area is characterized by picturesque canals, charming bridges, narrow streets, and traditional Dutch architecture, offering visitors a glimpse into the historic urban landscape of Amsterdam.</p>
+                
+            </div>
+        </div>
+    </header>
 
-    <!-- History -->
-    <section class="section">
-      <h2 class="section-title">Story of this place</h2>
-      <article class="history">
-        <p>anne frank house, amsterdam is a fascinating destination with unique historical and cultural significance. It stands as a testament to human achievement and continues to attract visitors from around the world who come to experience its beauty, learn about its rich history, and appreciate its cultural importance.</p>
-      </article>
-    </section>
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The actual Secret Annex, where Anne Frank and seven others hid, is preserved within the museum.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The original bookcase that concealed the entrance to the Secret Annex is still in place.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Photography and filming are strictly prohibited inside the Annex to maintain respect and ensure the experience for all visitors.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Otto Frank, Anne's father, was the sole survivor of the eight people who hid in the Annex.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The museum houses one of Anne Frank's original diaries, along with other original documents and historical objects.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Anne Frank House was saved from demolition by the Anne Frank Foundation, which acquired it in 1957 and opened it as a museum in 1960.</p>
+                </article>
+                
+            </div>
+        </section>
 
-    <!-- Nearby places -->
-    <section class="section">
-      <h2 class="section-title">Nearby places</h2>
-      <div class="grid cards">
-        
-      </div>
-    </section>
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>The Anne Frank House is a museum in Amsterdam dedicated to the Jewish diarist Anne Frank, who hid with her family and four other people in the annex of the building during World War II to escape Nazi persecution. From July 1942 to August 1944, Anne, her sister Margot, parents Otto and Edith Frank, Hermann and Auguste van Pels, their son Peter, and Fritz Pfeffer lived in the "Secret Annex" (Achterhuis), a concealed apartment behind a revolving bookcase on the Prinsengracht canal. The annex was located above the Opekta Works, Otto Frank's business. During this period of confinement, Anne meticulously documented her thoughts, feelings, and experiences in her diary, which she received for her 13th birthday.
 
-    <!-- Gallery -->
-    <section class="section">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery">
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1660856514089-eba86d271cc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Matt Pictures" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1598112330347-99bc40b9a541?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Guido Coppa" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1635669686498-ffa449773677?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Jann And" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1587221031385-407a32e5c989?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Vitaly Voloshyn" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1667665708170-96aa41e779c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Artem Shuba" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1641978909561-015aaa540119?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - José Jóvena" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1703535700028-b6ac467e0cd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Florinel ZONE" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1676412196593-2a7d400fef3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Marcel Hoberg" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1718486923839-116131a2f4fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Josip Ivankovic" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1695020383693-d2540ddb364b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Mirza Polat" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1660811136611-bca3598a5382?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Dario Brönnimann" loading="lazy" />
-        </figure>
-        
-        <figure class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1689886363441-3d558a08fa14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Martti Salmi" loading="lazy" />
-        </figure>
-        
-      </div>
-    </section>
+Their hiding place was supported by several courageous helpers, including Miep Gies and Victor Kugler, who provided food, news, and managed the business. On August 4, 1944, the group was betrayed and arrested by the Gestapo. They were transported to concentration camps. Anne and Margot both died of typhus in Bergen-Belsen in February or March 1945, just weeks before the camp's liberation. Otto Frank was the only one of the eight to survive the Holocaust. Miep Gies saved Anne's diary and gave it to Otto after the war, leading to its publication in 1947 as "Het Achterhuis" (The Secret Annex), and later internationally as "The Diary of a Young Girl." The house was preserved and opened as a museum in 1960, dedicated to Anne's story and a poignant reminder of the dangers of discrimination and persecution. It draws millions of visitors globally, offering a firsthand look into their confined world and amplifying Anne's enduring message of hope and resilience amidst profound darkness.</p>
+            </article>
+        </section>
 
-    <!-- Google Map (main location) -->
-    <section class="section">
-      <h2 class="section-title">Map</h2>
-      <div class="map-card">
-        <iframe class="map-embed"
-          src="https://www.google.com/maps?q=52.3751558,4.8840807&z=14&output=embed"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
-        </iframe>
-      </div>
-    </section>
+        <!-- Nearby places -->
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Westerkerk (Western Church)</div>
+                    
+                    <div class="nearby-distance">0.09 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Westerkerk%20%28Western%20Church%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Amsterdam Tulip Museum</div>
+                    
+                    <div class="nearby-distance">0.14 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Amsterdam%20Tulip%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 The Nine Streets (De Negen Straatjes)</div>
+                    
+                    <div class="nearby-distance">0.28 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/The%20Nine%20Streets%20%28De%20Negen%20Straatjes%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Houseboat Museum</div>
+                    
+                    <div class="nearby-distance">0.59 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Houseboat%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Royal Palace of Amsterdam</div>
+                    
+                    <div class="nearby-distance">0.6 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Royal%20Palace%20of%20Amsterdam" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Dam Square</div>
+                    
+                    <div class="nearby-distance">0.69 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Dam%20Square" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Madame Tussauds Amsterdam</div>
+                    
+                    <div class="nearby-distance">0.69 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Madame%20Tussauds%20Amsterdam" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Begijnhof</div>
+                    
+                    <div class="nearby-distance">0.81 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Begijnhof" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Amsterdam Museum</div>
+                    
+                    <div class="nearby-distance">0.83 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Amsterdam%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Bloemenmarkt (Flower Market)</div>
+                    
+                    <div class="nearby-distance">0.96 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Bloemenmarkt%20%28Flower%20Market%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+            
+        </section>
 
-    <!-- Interactive pins (Leaflet + OSM) -->
-    <section class="section">
-      <h2 class="section-title">Interactive map with pins</h2>
-      <div class="map-card">
-        <div id="poiMap"></div>
-      </div>
-    </section>
-  </main>
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1660856514089-eba86d271cc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Matt Pictures" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1598112330347-99bc40b9a541?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Guido Coppa" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1635669686498-ffa449773677?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Jann And" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1587221031385-407a32e5c989?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Vitaly Voloshyn" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1667665708170-96aa41e779c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Artem Shuba" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1641978909561-015aaa540119?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - José Jóvena" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1703535700028-b6ac467e0cd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Florinel ZONE" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1676412196593-2a7d400fef3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Marcel Hoberg" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1718486923839-116131a2f4fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxhbm5lJTIwZnJhbmslMjBob3VzZSUyQyUyMGFtc3RlcmRhbXxlbnwwfHx8fDE3NjUxOTc0Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Josip Ivankovic" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1695020383693-d2540ddb364b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Mirza Polat" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1660811136611-bca3598a5382?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Dario Brönnimann" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1689886363441-3d558a08fa14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8YW5uZSUyMGZyYW5rJTIwaG91c2UlMkMlMjBhbXN0ZXJkYW18ZW58MHx8fHwxNzY1MTk3NDI3fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="anne frank house, amsterdam - Martti Salmi" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
 
-  <footer>
-    Travel Guide Bot • Discover Every Place
-  </footer>
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=52.3751558,4.8840807&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
 
-  <script>
-    // Theme toggle with persistence
-    (function() {
-      const key = 'tg_theme';
-      const saved = localStorage.getItem(key);
-      if (saved === 'dark') document.body.classList.add('dark');
-      const btn = document.getElementById('themeToggle');
-      btn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem(key, document.body.classList.contains('dark') ? 'dark' : 'light');
-      });
-    })();
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
 
-    // Leaflet map with pins (main + geocoded nearby)
-    (function() {
-      const lat = 52.3751558;
-      const lon = 4.8840807;
-      const map = L.map('poiMap', { scrollWheelZoom: false }).setView([lat, lon], 14);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap'
-      }).addTo(map);
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fa', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
 
-      const mainPopup = `<strong>anne frank house, amsterdam</strong>`;
-      L.marker([lat, lon]).addTo(map).bindPopup(mainPopup);
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const html = document.documentElement;
 
-      
-    })();
-  </script>
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        // Load saved RTL preference
+        const savedRtl = localStorage.getItem('rtl') || 'ltr';
+        if (savedRtl === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        rtlToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                html.removeAttribute('dir');
+                localStorage.setItem('rtl', 'ltr');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                localStorage.setItem('rtl', 'rtl');
+            }
+        });
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
 </body>
 </html>
