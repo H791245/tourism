@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lipstick building, goteborg, sweden. - Travel Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .history {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .best-time {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .places-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .place-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .place-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .place-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .place-name {
+            font-weight: bold;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+
+        .place-distance {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .maps-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .maps-link:hover {
+            background: #764ba2;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .images-gallery, .places-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>lipstick building, goteborg, sweden.</h1>
+        
+        <p>The Lipstick Building is strategically located in the Lilla Bommen area, a bustling harbor district on the northern bank of the Göta älv river, just a short walk from Gothenburg's city center. It sits adjacent to the architecturally acclaimed Gothenburg Opera House and is in close proximity to the historic Barken Viking ship hotel. Its position makes it a prominent feature on the city's waterfront, easily accessible by public transport (trams and buses) from key points like Brunnsparken and Gothenburg Central Station. The surrounding area offers picturesque views of the river, maritime activity, and easy access to other cultural attractions, making it a central point of interest for visitors exploring the city's modern face.</p>
+        
+    </header>
+
+    <div class="container">
+        <!-- History Section -->
+        <div class="section">
+            <h2>📚 History & Background</h2>
+            <p class="history">The iconic 'Lipstick Building' in Gothenburg, officially known as Lilla Bommen and affectionately dubbed 'Läppstiftet' by locals, stands as a distinctive landmark on the city's waterfront. Conceived by the renowned British-Swedish architect Ralph Erskine, in collaboration with White Arkitekter, the building was completed in 1989 after construction began in 1986. Its striking postmodern design was commissioned by Skanska and Skanska Property. Situated prominently at the Lilla Bommen harbor, where the Göta älv river meets the Kattegat, the 22-story structure was part of an ambitious urban renewal project aimed at transforming Gothenburg's former industrial waterfront into a vibrant, modern district. Erskine’s vision was to create a building that reflected the city’s maritime heritage while also pushing architectural boundaries. The red and white striped facade, along with its unique stepped shape culminating in a 'peak' reminiscent of a ship's bow or, indeed, a tube of lipstick, quickly cemented its place in Gothenburg's skyline. The building primarily serves as an office complex, but its uppermost floor, originally named GötheborgsUtkiken, was famously designed as a public observation deck and café, offering breathtaking panoramic views of the city, the river, and the archipelago. Although public access to the observation deck has varied over the years, its original intention further highlighted the building's role as a public asset and a symbol of modern Gothenburg's dynamic growth and architectural prowess.</p>
+        </div>
+
+        <!-- Facts Section -->
+        <div class="section">
+            <h2>✨ Key Facts</h2>
+            <div class="facts-grid">
+                
+                <div class="fact-card">
+                    <strong>1.</strong> Its official name is Lilla Bommen, but it's widely known as 'Läppstiftet' (The Lipstick) or 'Vattenborgen' (The Water Castle).
+                </div>
+                
+                <div class="fact-card">
+                    <strong>2.</strong> The building stands 86 meters (282 feet) tall and comprises 22 stories, making it one of Gothenburg's most recognizable high-rises.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>3.</strong> Designed by the celebrated British-Swedish architect Ralph Erskine, who also designed other notable buildings in Sweden and internationally.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>4.</strong> Its distinctive red and white striped facade is made of enameled steel panels, contributing to its unique 'lipstick' appearance.
+                </div>
+                
+                <div class="fact-card">
+                    <strong>5.</strong> The top floor was originally a public observation deck and café, GötheborgsUtkiken, offering stunning panoramic views of Gothenburg and its archipelago.
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Best Time Section -->
+        <div class="section">
+            <h2>🌞 Best Time to Visit</h2>
+            <div class="best-time">
+                <p><strong>Recommended Season:</strong> The best time to visit the Lipstick Building and Gothenburg in general is during the summer months, from June to August. During this period, the weather is pleasantly warm, daylight hours are long, and the city is vibrant with outdoor activities and events. Spring (April-May) and early Autumn (September-October) also offer agreeable conditions with fewer crowds, though temperatures are cooler. Winter brings shorter, darker days, but the building's illuminated presence against the snow or dark sky can be quite striking.</p>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="section">
+            <h2>📸 Gallery</h2>
+            <div class="images-gallery">
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" alt="lipstick building, goteborg, sweden. - Landmark" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - Landmark</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?w=800&q=80" alt="lipstick building, goteborg, sweden. - Architecture" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - Architecture</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80" alt="lipstick building, goteborg, sweden. - Landscape" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - Landscape</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="lipstick building, goteborg, sweden. - Nature" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - Nature</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="lipstick building, goteborg, sweden. - View" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - View</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="lipstick building, goteborg, sweden. - Culture" loading="lazy">
+                    <div class="image-title">lipstick building, goteborg, sweden. - Culture</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Nearby Places Section -->
+        
+        <div class="section">
+            <h2>🗺️ Nearby Attractions</h2>
+            <div class="places-list">
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Lilla Bommen Viewpoint (The Lipstick Building)</div>
+                    
+                    <div class="place-distance">0.0 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Lilla%20Bommen%20Viewpoint%20%28The%20Lipstick%20Building%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Gothenburg Opera House (Göteborgsoperan)</div>
+                    
+                    <div class="place-distance">0.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Gothenburg%20Opera%20House%20%28G%C3%B6teborgsoperan%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Maritiman - The Maritime Museum</div>
+                    
+                    <div class="place-distance">0.2 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Maritiman%20-%20The%20Maritime%20Museum" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🍽️</div>
+                    <div class="place-name">Nordstan Shopping Centre</div>
+                    
+                    <div class="place-distance">0.4 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Nordstan%20Shopping%20Centre" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Gustaf Adolfs Torg</div>
+                    
+                    <div class="place-distance">0.6 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Gustaf%20Adolfs%20Torg" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🏛️</div>
+                    <div class="place-name">Kronhuset & Kronhusbodarna</div>
+                    
+                    <div class="place-distance">0.7 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Kronhuset%20%26%20Kronhusbodarna" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🌳</div>
+                    <div class="place-name">Trädgårdsföreningen (The Garden Society of Gothenburg)</div>
+                    
+                    <div class="place-distance">1.1 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Tr%C3%A4dg%C3%A5rdsf%C3%B6reningen%20%28The%20Garden%20Society%20of%20Gothenburg%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">🍽️</div>
+                    <div class="place-name">Feskekôrka (Fish Church)</div>
+                    
+                    <div class="place-distance">1.2 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Feskek%C3%B4rka%20%28Fish%20Church%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">☕</div>
+                    <div class="place-name">Haga District</div>
+                    
+                    <div class="place-distance">1.7 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Haga%20District" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+                <div class="place-card">
+                    <div class="place-icon">📸</div>
+                    <div class="place-name">Kungsportsavenyen (The Avenue)</div>
+                    
+                    <div class="place-distance">1.8 km away</div>
+                    
+                    <a href="https://www.google.com/maps/search/Kungsportsavenyen%20%28The%20Avenue%29" target="_blank" rel="noopener noreferrer" class="maps-link">
+                        View on Maps
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        <!-- Map Section -->
+        <div class="section">
+            <h2>📍 Location on Map</h2>
+            <iframe width="100%" height="400" style="border: none; border-radius: 8px;"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDlPn1j6V8Sd5VYNMWRbHCe89-eRRU2qBs&q=57.7132715,11.9674476&zoom=12">
+            </iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Travel Guide Bot. All rights reserved.</p>
+        <p>Generated with ❤️ using Ollama & Unsplash</p>
+    </footer>
+</body>
+</html>
