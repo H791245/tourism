@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Park Koohsangi, Mashhad, Iran • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL/LTR">→‎←</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">Spring (March to May) and early Autumn (September to November) are the best times to visit, when the weather is mild and pleasant, and the park's greenery is at its most vibrant.</div>
+                <h1>Park Koohsangi, Mashhad, Iran</h1>
+                
+                <p class="sub">Park Koohsangi is strategically located in the southwestern part of Mashhad, making it easily accessible from various city points. Its elevated position provides a unique vantage point, offering stunning panoramic views of Mashhad's urban sprawl, particularly beautiful at sunset or when the city lights twinkle at night. It stands as a prominent landmark and a vital green lung within Mashhad, serving as a popular escape from the city's hustle and bustle while remaining conveniently within city limits.</p>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Park Koohsangi is one of Mashhad's oldest and largest parks, renowned for its distinctive natural rocky peaks.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The park offers panoramic views of Mashhad, including distant glimpses of the Imam Reza Shrine from its higher elevations, especially beautiful during sunset.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">It is home to the Khorasan Great Museum, which showcases the rich history, culture, and art of Khorasan province.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>Park Koohsangi, literally meaning 'Mountain of Stone' or 'Rocky Mountain,' is one of Mashhad's oldest and most cherished public parks. Its origins trace back to a natural mountainous outcrop on the southwestern periphery of the city, which, over time, became an informal gathering spot for locals seeking fresh air and natural beauty. In its nascent stages, the area remained largely undeveloped, characterized by its prominent twin rocky peaks that give the park its distinctive name and identity. The formal transformation into a structured park began in the 1960s during the Pahlavi era, marking one of Mashhad's pioneering efforts in creating modern recreational spaces. This initial development involved basic landscaping, pathways, and rudimentary facilities, laying the groundwork for what would become a major urban park. 
+
+The post-revolution era, particularly from the late 20th century onwards, witnessed significant expansion and modernization of Park Koohsangi. Extensive renovations introduced a blend of natural elements with contemporary park design, incorporating artificial waterfalls, elaborate fountains, expanded green areas, children's playgrounds, and enhanced infrastructure. The construction of the Grand Koohsangi Museum (now known as Khorasan Great Museum) further enriched its cultural appeal, transforming the park into a multi-faceted destination. Pathways and staircases were meticulously built to lead visitors up the iconic rocky peaks, offering breathtaking panoramic views of Mashhad. This continuous evolution from a simple natural landmark to a comprehensive recreational and cultural complex underscores its enduring significance as a beloved sanctuary for both Mashhad residents and tourists.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Koohsangi Lake and Fountains</div>
+                    
+                    <div class="nearby-distance">0.1 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Koohsangi%20Lake%20and%20Fountains" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Koohsangi Park Green Areas & Pathways</div>
+                    
+                    <div class="nearby-distance">0.2 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Koohsangi%20Park%20Green%20Areas%20%26%20Pathways" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">☕ Traditional Tea Houses (within Koohsangi)</div>
+                    
+                    <div class="nearby-distance">0.25 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Traditional%20Tea%20Houses%20%28within%20Koohsangi%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Koohsangi Restaurants</div>
+                    
+                    <div class="nearby-distance">0.3 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Koohsangi%20Restaurants" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Statues of Persian Poets (e.g., Ferdowsi)</div>
+                    
+                    <div class="nearby-distance">0.35 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Statues%20of%20Persian%20Poets%20%28e.g.%2C%20Ferdowsi%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Koohsangi Mountain Ascent & Viewpoint</div>
+                    
+                    <div class="nearby-distance">0.4 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Koohsangi%20Mountain%20Ascent%20%26%20Viewpoint" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Museum of Anthropology (Koohsangi Park)</div>
+                    
+                    <div class="nearby-distance">0.45 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Museum%20of%20Anthropology%20%28Koohsangi%20Park%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Khorasan Grand Museum</div>
+                    
+                    <div class="nearby-distance">0.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Khorasan%20Grand%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Ahangaran Cultural Complex</div>
+                    
+                    <div class="nearby-distance">0.6 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Ahangaran%20Cultural%20Complex" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Shahed Park</div>
+                    
+                    <div class="nearby-distance">0.7 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Shahed%20Park" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+            
+        </section>
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" alt="Park Koohsangi, Mashhad, Iran - Landmark" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?w=800&q=80" alt="Park Koohsangi, Mashhad, Iran - Architecture" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80" alt="Park Koohsangi, Mashhad, Iran - Landscape" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=36.2835775,59.564426&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fa', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        // Load saved RTL preference
+        const savedRtl = localStorage.getItem('rtl') || 'ltr';
+        if (savedRtl === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        rtlToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                html.removeAttribute('dir');
+                localStorage.setItem('rtl', 'ltr');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                localStorage.setItem('rtl', 'rtl');
+            }
+        });
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
