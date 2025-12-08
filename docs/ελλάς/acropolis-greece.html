@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acropolis, Greece • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1666192179043-5aad64280d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1666192179043-5aad64280d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL/LTR">→‎←</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">The best time to visit the Acropolis is during the shoulder seasons of spring (April to May) and autumn (September to October). During these months, the weather is pleasant with moderate temperatures, making it comfortable for exploring the site. There are also fewer crowds compared to the peak summer months (July and August), when temperatures can soar and tourist numbers are at their highest. Aim to visit early in the morning right after opening or late in the afternoon a couple of hours before closing to further avoid crowds and experience softer light for photography.</div>
+                <h1>Acropolis, Greece</h1>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The word 'Acropolis' literally means 'high city' or 'city on the edge' in Greek.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Parthenon, the main temple on the Acropolis, was dedicated to the goddess Athena Parthenos (Athena the Virgin) and once housed a colossal chryselephantine (gold and ivory) statue of her.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Erechtheion features the famous Porch of the Caryatids, where six draped female figures serve as supporting columns.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Acropolis was the spiritual and political center of ancient Athens, but it also served as a fortress and a treasury.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Construction of the major buildings on the Acropolis during the Golden Age of Pericles was surprisingly swift, completed in just over 15 years for the Parthenon itself.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>The Acropolis of Athens, meaning 'highest city' in Greek, stands as a profound testament to ancient Greek civilization and architectural prowess. Its history stretches back to the Neolithic period, but it truly began to flourish as a fortified settlement during the Mycenaean era (c. 1300 BCE) with the construction of a massive cyclopean wall. However, the iconic structures we see today primarily date from the 5th century BCE, a period known as the Golden Age of Athens under the leadership of Pericles. Following the Persian destruction in 480 BCE, Pericles initiated an ambitious rebuilding program, transforming the Acropolis into a magnificent sanctuary dedicated to the city's patron goddess, Athena.
+
+The centerpiece is the Parthenon, a Doric temple dedicated to Athena Parthenos, built between 447 and 432 BCE by architects Ictinus and Callicrates, with sculptural decoration by Phidias. Adjacent to it are the Propylaea, the monumental gateway designed by Mnesicles (437-432 BCE), and the small, elegant Temple of Athena Nike (426-421 BCE), also designed by Callicrates. The Erechtheion (421-406 BCE), an Ionic temple famous for its Porch of the Caryatids, stands on the sacred spot where Athena and Poseidon supposedly contended for patronage of Athens. Throughout subsequent centuries, the Acropolis endured various transformations: a Christian church, a mosque under Ottoman rule, and an arsenal. A Venetian bombardment in 1687 disastrously ignited gunpowder stored in the Parthenon, causing immense damage. Today, the Acropolis is a UNESCO World Heritage site and a powerful symbol of democracy, art, and philosophy, undergoing continuous restoration efforts to preserve its timeless legacy.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Parthenon</div>
+                    
+                    <div class="nearby-distance">0.04 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Parthenon" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Erechtheion</div>
+                    
+                    <div class="nearby-distance">0.11 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Erechtheion" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Odeon of Herodes Atticus</div>
+                    
+                    <div class="nearby-distance">0.16 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Odeon%20of%20Herodes%20Atticus" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Areopagus Hill (Mars Hill)</div>
+                    
+                    <div class="nearby-distance">0.23 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Areopagus%20Hill%20%28Mars%20Hill%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Acropolis Museum</div>
+                    
+                    <div class="nearby-distance">0.3 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Acropolis%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Roman Agora & Tower of the Winds</div>
+                    
+                    <div class="nearby-distance">0.37 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Roman%20Agora%20%26%20Tower%20of%20the%20Winds" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Plaka District</div>
+                    
+                    <div class="nearby-distance">0.46 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Plaka%20District" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Ancient Agora of Athens (Stoa of Attalos)</div>
+                    
+                    <div class="nearby-distance">0.54 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Ancient%20Agora%20of%20Athens%20%28Stoa%20of%20Attalos%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Philopappos Hill</div>
+                    
+                    <div class="nearby-distance">0.7 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Philopappos%20Hill" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Temple of Olympian Zeus</div>
+                    
+                    <div class="nearby-distance">0.84 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Temple%20of%20Olympian%20Zeus" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+            
+        </section>
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1666192179043-5aad64280d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Julio Hernández" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1670786446888-d34be45fa548?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Greece Newstart" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1664111943859-fb9637c97723?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Matheus Oliveira" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621664-d97023b8ee7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621753-655ec695b415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621556-d60c57e6fd71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1669706341369-1e40498d2e40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Linda Gerbec" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621644-a94cefb3fab1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621935-262efae79a39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxBY3JvcG9saXMlMkMlMjBHcmVlY2V8ZW58MHx8fHwxNzY1MjIxMzMxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621605-751452417ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8QWNyb3BvbGlzJTJDJTIwR3JlZWNlfGVufDB8fHx8MTc2NTIyMTMzMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1598172235676-175d0b54d2ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8QWNyb3BvbGlzJTJDJTIwR3JlZWNlfGVufDB8fHx8MTc2NTIyMTMzMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Athens at a Glance" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1697455621587-1011833b931c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8QWNyb3BvbGlzJTJDJTIwR3JlZWNlfGVufDB8fHx8MTc2NTIyMTMzMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Acropolis, Greece - Dawid Tkocz" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=37.9716894,23.7263197&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fa', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        // Load saved RTL preference
+        const savedRtl = localStorage.getItem('rtl') || 'ltr';
+        if (savedRtl === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        rtlToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                html.removeAttribute('dir');
+                localStorage.setItem('rtl', 'ltr');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                localStorage.setItem('rtl', 'rtl');
+            }
+        });
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
