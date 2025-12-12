@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydration Tracker</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --purple-hover: #7c3aed;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --purple: #a78bfa;
+            --purple-hover: #8b5cf6;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-top: 8px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .stat-unit {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-left: 2px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-amount {
+            font-size: 20px;
+        }
+
+        .btn-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .btn-drink {
+            grid-column: 1 / -1;
+            background: var(--purple);
+            font-size: 18px;
+        }
+
+        .btn-drink:hover {
+            background: var(--purple-hover);
+        }
+
+        .btn-hydrate-out {
+            grid-column: 1 / -1;
+            background: var(--success);
+        }
+
+        .btn-hydrate-out:hover {
+            background: #059669;
+        }
+
+        .btn-export {
+            grid-column: 1 / -1;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-export:hover {
+            background: var(--border);
+        }
+
+        .history {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .history-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .history-icon.intake {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .history-icon.drink {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .history-icon.output {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .history-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history-amount {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .history-time {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .chart-container {
+            height: 200px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 160px;
+            gap: 8px;
+        }
+
+        .chart-day {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chart-bar-group {
+            width: 100%;
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+            height: 120px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--accent);
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar.output {
+            background: var(--success);
+        }
+
+        .chart-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💧 Hydration Tracker</h1>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Intake</div>
+                <div class="stat-value">
+                    <span id="intakeToday">0</span><span class="stat-unit">ml</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Drinks</div>
+                <div class="stat-value">
+                    <span id="drinksToday">0</span><span class="stat-unit">×</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Output</div>
+                <div class="stat-value">
+                    <span id="outputToday">0</span><span class="stat-unit">×</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Log Drinking</div>
+            <div class="button-grid">
+                <button class="btn btn-drink" onclick="logDrink()">
+                    🥤 Drink
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Log Bottle Completion</div>
+            <div class="button-grid">
+                <button class="btn" onclick="logIntake(500)">
+                    <span class="btn-amount">500</span>
+                    <span class="btn-label">ml</span>
+                </button>
+                <button class="btn" onclick="logIntake(750)">
+                    <span class="btn-amount">750</span>
+                    <span class="btn-label">ml</span>
+                </button>
+                <button class="btn" onclick="logIntake(1500)">
+                    <span class="btn-amount">1500</span>
+                    <span class="btn-label">ml</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Log Output</div>
+            <div class="button-grid">
+                <button class="btn btn-hydrate-out" onclick="logOutput()">
+                    💦 Hydrate Out
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">7-Day Trend</div>
+            <div class="chart-container">
+                <div class="chart-bars" id="chartBars"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Today's Activity</div>
+            <div class="history" id="historyList"></div>
+        </div>
+
+        <div class="section">
+            <div class="button-grid">
+                <button class="btn btn-export" onclick="exportToExcel()">
+                    📊 Export to Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <script>
+        // Initialize data
+        let data = JSON.parse(localStorage.getItem('hydrationData')) || { entries: [] };
+
+        // Theme management
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Log drink (timestamp only)
+        function logDrink() {
+            const entry = {
+                type: 'drink',
+                timestamp: new Date().toISOString()
+            };
+            data.entries.push(entry);
+            saveData();
+            updateUI();
+            showToast('Drink logged');
+        }
+
+        // Log intake
+        function logIntake(amount) {
+            const entry = {
+                type: 'intake',
+                amount: amount,
+                timestamp: new Date().toISOString()
+            };
+            data.entries.push(entry);
+            saveData();
+            updateUI();
+            showToast(`Logged ${amount}ml intake`);
+        }
+
+        // Log output
+        function logOutput() {
+            const entry = {
+                type: 'output',
+                timestamp: new Date().toISOString()
+            };
+            data.entries.push(entry);
+            saveData();
+            updateUI();
+            showToast('Logged hydrate out');
+        }
+
+        // Save data
+        function saveData() {
+            localStorage.setItem('hydrationData', JSON.stringify(data));
+        }
+
+        // Update UI
+        function updateUI() {
+            updateTodayStats();
+            updateHistory();
+            updateChart();
+        }
+
+        // Update today's stats
+        function updateTodayStats() {
+            const today = new Date().toDateString();
+            const todayEntries = data.entries.filter(e => 
+                new Date(e.timestamp).toDateString() === today
+            );
+
+            const intake = todayEntries
+                .filter(e => e.type === 'intake')
+                .reduce((sum, e) => sum + e.amount, 0);
+
+            const drinks = todayEntries.filter(e => e.type === 'drink').length;
+            const output = todayEntries.filter(e => e.type === 'output').length;
+
+            document.getElementById('intakeToday').textContent = intake;
+            document.getElementById('drinksToday').textContent = drinks;
+            document.getElementById('outputToday').textContent = output;
+        }
+
+        // Update history
+        function updateHistory() {
+            const today = new Date().toDateString();
+            const todayEntries = data.entries.filter(e => 
+                new Date(e.timestamp).toDateString() === today
+            ).reverse();
+
+            const historyList = document.getElementById('historyList');
+
+            if (todayEntries.length === 0) {
+                historyList.innerHTML = '<div class="empty-state">No activity today</div>';
+                return;
+            }
+
+            historyList.innerHTML = todayEntries.map(entry => {
+                const time = new Date(entry.timestamp).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                if (entry.type === 'drink') {
+                    return `
+                        <div class="history-item">
+                            <div class="history-info">
+                                <div class="history-icon drink">🥤</div>
+                                <div class="history-details">
+                                    <div class="history-amount">Drink</div>
+                                    <div class="history-time">${time}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (entry.type === 'intake') {
+                    return `
+                        <div class="history-item">
+                            <div class="history-info">
+                                <div class="history-icon intake">💧</div>
+                                <div class="history-details">
+                                    <div class="history-amount">${entry.amount}ml</div>
+                                    <div class="history-time">${time}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="history-item">
+                            <div class="history-info">
+                                <div class="history-icon output">💦</div>
+                                <div class="history-details">
+                                    <div class="history-amount">Hydrate Out</div>
+                                    <div class="history-time">${time}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        // Update chart
+        function updateChart() {
+            const chartBars = document.getElementById('chartBars');
+            const days = [];
+
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                days.push(date);
+            }
+
+            const maxIntake = Math.max(...days.map(day => {
+                const dayStr = day.toDateString();
+                return data.entries
+                    .filter(e => e.type === 'intake' && new Date(e.timestamp).toDateString() === dayStr)
+                    .reduce((sum, e) => sum + e.amount, 0);
+            }), 1500);
+
+            chartBars.innerHTML = days.map(day => {
+                const dayStr = day.toDateString();
+                const dayEntries = data.entries.filter(e => 
+                    new Date(e.timestamp).toDateString() === dayStr
+                );
+
+                const intake = dayEntries
+                    .filter(e => e.type === 'intake')
+                    .reduce((sum, e) => sum + e.amount, 0);
+
+                const output = dayEntries.filter(e => e.type === 'output').length;
+
+                const intakeHeight = (intake / maxIntake) * 100;
+                const outputHeight = output > 0 ? Math.min((output / 10) * 100, 100) : 0;
+
+                const label = day.toLocaleDateString('en-US', { weekday: 'short' });
+
+                return `
+                    <div class="chart-day">
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: ${intakeHeight}%"></div>
+                            <div class="chart-bar output" style="height: ${outputHeight}%"></div>
+                        </div>
+                        <div class="chart-label">${label}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Export to Excel
+        function exportToExcel() {
+            if (data.entries.length === 0) {
+                showToast('No data to export');
+                return;
+            }
+
+            const exportData = data.entries.map(entry => ({
+                Date: new Date(entry.timestamp).toLocaleDateString(),
+                Time: new Date(entry.timestamp).toLocaleTimeString(),
+                Type: entry.type === 'intake' ? 'Bottle Completion' : entry.type === 'drink' ? 'Drink' : 'Hydrate Out',
+                Amount: entry.type === 'intake' ? `${entry.amount}ml` : '-'
+            }));
+
+            const ws = XLSX.utils.json_to_sheet(exportData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Hydration Log');
+
+            const fileName = `hydration-log-${new Date().toISOString().split('T')[0]}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+
+            showToast('Exported to Excel');
+        }
+
+        // Show toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initialize UI
+        updateUI();
+    </script>
+</body>
+</html>
