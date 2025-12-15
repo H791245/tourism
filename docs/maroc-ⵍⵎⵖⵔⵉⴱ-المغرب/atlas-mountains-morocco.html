@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atlas Mountains, Morocco • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS (top theme toggle) */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        /* BOTTOM CONTROLS (RTL + Translate) */
+        .bottom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .bottom-controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1727860067787-94410790e3e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1727860067787-94410790e3e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .sub.collapsed {
+            max-height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            cursor: pointer;
+        }
+
+        .sub.expanded {
+            max-height: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .expand-indicator {
+            display: inline;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .bottom-controls {
+                flex-direction: column;
+                gap: 6px;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .bottom-controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+    </div>
+
+    <div class="bottom-controls">
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL/LTR">→‎←</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">The ideal time to visit the Atlas Mountains for trekking and general exploration is during spring (April-May) and autumn (September-October). These seasons offer pleasant temperatures, clear skies, and vibrant landscapes, with wildflowers blooming in spring and milder weather in autumn. Winter (December-March) is suitable for skiing in areas like Oukaïmeden, but high-altitude passes can be snowbound, while summer (June-August) can be very hot at lower elevations.</div>
+                <h1>Atlas Mountains, Morocco</h1>
+                
+                <p class="sub collapsed" id="locationText">The Atlas Mountains form a major mountain range in northwestern Africa, primarily within Morocco, where they are divided into the Middle Atlas, High Atlas, and Anti-Atlas ranges. They act as a natural boundary separating the relatively fertile Mediterranean and Atlantic coastlines from the vast Sahara Desert, playing a crucial role in Morocco's climate and geography.</p>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Atlas Mountains are the longest mountain range in Africa, stretching approximately 2,500 km (1,600 miles) across Morocco, Algeria, and Tunisia, with the Moroccan High Atlas being its highest section.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Jebel Toubkal, at 4,167 meters (13,671 feet), is the highest peak in North Africa and a popular trekking destination, attracting climbers from around the world.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The mountains are predominantly inhabited by the indigenous Amazigh (Berber) people, whose distinct culture, language (Tamazight), and traditional village life have been preserved for centuries in remote valleys.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The Atlas region features diverse ecosystems, from semi-arid plains to alpine zones, supporting unique flora and fauna, including ancient Atlas cedar forests and the endangered Barbary macaque.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>The Atlas Mountains, a majestic natural barrier traversing Morocco, Algeria, and Tunisia, boast a rich and ancient history primarily shaped by the indigenous Amazigh (Berber) people. For millennia, these mountains have been a cradle of distinct cultures, resilient communities, and strategic strongholds. The Berbers established a profound connection with the rugged terrain, developing sophisticated agricultural techniques like terraced farming and irrigation systems that allowed life to flourish in challenging conditions. The mountains were not merely a dwelling but a vital artery in the trans-Saharan trade routes, facilitating the exchange of goods, ideas, and cultures between the Mediterranean coast and the vast Sahara. Ancient kasbahs and fortified villages scattered throughout the valleys stand as testaments to this era, serving as protection against invaders and as key stops for caravans. Various dynasties, including the Almoravids and Almohads, with strong Berber roots, emerged from these mountains to rule vast empires. During the French Protectorate in the 20th century, the Atlas became a significant area of resistance, with local tribes fiercely defending their autonomy and traditional ways of life against colonial incursions. Despite external influences, the Atlas Mountains have largely preserved their unique heritage, language, and customs, with traditional village life, pastoralism, and intricate artisan crafts remaining central to their identity. The history of the Atlas is a narrative of endurance, cultural preservation, and a deep symbiotic relationship between people and their formidable mountain home.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Tnine Ourika Weekly Souk</div>
+                    
+                    <div class="nearby-distance">1.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Tnine%20Ourika%20Weekly%20Souk" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Ourika Riverfront Cafes & Restaurants</div>
+                    
+                    <div class="nearby-distance">3.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Ourika%20Riverfront%20Cafes%20%26%20Restaurants" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Anima Garden by André Heller</div>
+                    
+                    <div class="nearby-distance">10.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Anima%20Garden%20by%20Andr%C3%A9%20Heller" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Setti Fatma Waterfalls</div>
+                    
+                    <div class="nearby-distance">17.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Setti%20Fatma%20Waterfalls" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Lalla Takerkoust Lake</div>
+                    
+                    <div class="nearby-distance">32.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Lalla%20Takerkoust%20Lake" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Marrakech Medina (Djemaa el-Fna)</div>
+                    
+                    <div class="nearby-distance">38.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Marrakech%20Medina%20%28Djemaa%20el-Fna%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Agafay Desert</div>
+                    
+                    <div class="nearby-distance">42.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Agafay%20Desert" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Oukaïmeden Ski Resort</div>
+                    
+                    <div class="nearby-distance">45.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Ouka%C3%AFmeden%20Ski%20Resort" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Imlil Village (Mount Toubkal Base)</div>
+                    
+                    <div class="nearby-distance">58.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Imlil%20Village%20%28Mount%20Toubkal%20Base%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+            
+        </section>
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1727860067787-94410790e3e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Vincenzo Montagna" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1593535988128-7214bc2cbedc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Tienko Dima" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1739464889400-e87ec57f246d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Saban Onay" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1739464889767-b805389a5e3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Saban Onay" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560789561-57dd86dbf648?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Patrick Ogilvie" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1531762811413-ae581ee90344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Ron Hansen" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560789579-1502a836c8c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Patrick Ogilvie" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560789627-eed2d32f7326?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Patrick Ogilvie" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1459661611338-d1a4dc1a6059?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxBdGxhcyUyME1vdW50YWlucyUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY1Nzk4NDQyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Steven Striegel" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559315390-1065ae6b47c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8QXRsYXMlMjBNb3VudGFpbnMlMkMlMjBNb3JvY2NvfGVufDB8fHx8MTc2NTc5ODQ0Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - imane ag" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1747601387724-1ff9a226d440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8QXRsYXMlMjBNb3VudGFpbnMlMkMlMjBNb3JvY2NvfGVufDB8fHx8MTc2NTc5ODQ0Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - ine driesens" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565458901745-4c797b564f73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8QXRsYXMlMjBNb3VudGFpbnMlMkMlMjBNb3JvY2NvfGVufDB8fHx8MTc2NTc5ODQ0Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Atlas Mountains, Morocco - Hans-Jürgen Weinhardt" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=31.0596827,-7.9000092&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,fa',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const html = document.documentElement;
+        const locationText = document.getElementById('locationText');
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        // Load saved RTL preference
+        const savedRtl = localStorage.getItem('rtl') || 'ltr';
+        if (savedRtl === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        rtlToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                html.removeAttribute('dir');
+                localStorage.setItem('rtl', 'ltr');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                localStorage.setItem('rtl', 'rtl');
+            }
+        });
+
+        // Location text expand/collapse
+        if (locationText) {
+            locationText.addEventListener('click', () => {
+                const isExpanded = locationText.classList.contains('expanded');
+                if (isExpanded) {
+                    locationText.classList.remove('expanded');
+                    locationText.classList.add('collapsed');
+                } else {
+                    locationText.classList.remove('collapsed');
+                    locationText.classList.add('expanded');
+                }
+            });
+        }
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
