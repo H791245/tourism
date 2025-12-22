@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tinghir, Morocco • Travel Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #020617;
+            --card: #020617;
+            --muted: #9ca3af;
+            --text: #e5e7eb;
+            --brand: #3b82f6;
+            --brand-2: #22d3ee;
+            --radius: 16px;
+            --gap: 16px;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --text: #1f2937;
+            --brand: #2563eb;
+            --brand-2: #06b6d4;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html[dir="rtl"],
+        html[dir="rtl"] body {
+            font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        [data-theme="light"] body {
+            background: #f8fafc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 16px 32px;
+        }
+
+        /* CONTROLS (top theme toggle) */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        /* BOTTOM CONTROLS (RTL + Translate) */
+        .bottom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        html[dir="rtl"] .bottom-controls {
+            right: auto;
+            left: 20px;
+            flex-direction: row-reverse;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* HERO */
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.75);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #2563eb 0, #1e40af 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-inner {
+            position: relative;
+            min-height: auto;
+            padding: 16px 16px;
+            display: grid;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 720px) {
+            .hero-inner {
+                min-height: 220px;
+                padding: 20px 16px 22px;
+            }
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.92)),
+                url("https://images.unsplash.com/photo-1624802294472-4dc449c1c127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+            opacity: 0.95;
+        }
+
+        [data-theme="light"] .hero-media {
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)),
+                url("https://images.unsplash.com/photo-1624802294472-4dc449c1c127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080") center/cover no-repeat;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(18px, 4vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .sub {
+            font-size: 13px;
+            color: #e2e8f0;
+            opacity: 0.9;
+            margin: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        [data-theme="light"] .sub {
+            color: #f0f4f8;
+        }
+
+        .sub.collapsed {
+            max-height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            cursor: pointer;
+        }
+
+        .sub.expanded {
+            max-height: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .expand-indicator {
+            display: inline;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            backdrop-filter: blur(18px);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        /* LAYOUT SECTIONS */
+        .section {
+            padding: 24px 0 4px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #e5e7eb;
+            letter-spacing: 0.02em;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #1f2937;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gap);
+        }
+
+        .grid.cards {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 720px) {
+            .grid.cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1040px) {
+            .grid.cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* CARDS */
+        .card {
+            background: radial-gradient(circle at top, #0b1120 0, #020617 65%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            padding: 16px 15px 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        [data-theme="light"] .card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+            border-color: rgba(96, 165, 250, 0.9);
+        }
+
+        [data-theme="light"] .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #f9fafb;
+        }
+
+        [data-theme="light"] .card-title {
+            color: #1f2937;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* HISTORY */
+        .history {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%);
+            border-radius: 18px;
+            padding: 18px 18px 17px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .history {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .history h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            letter-spacing: 0.02em;
+        }
+
+        .history p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        [data-theme="light"] .history p {
+            color: #4b5563;
+        }
+
+        /* NEARBY */
+        .nearby-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nearby-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nearby-distance {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+            border: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #f9fafb;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease-out, filter 0.16s ease-out, box-shadow 0.16s ease-out;
+        }
+
+        html[dir="rtl"] .btn {
+            flex-direction: row-reverse;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 72%;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+        }
+
+        html[dir="rtl"] .gallery {
+            direction: ltr;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 999px;
+        }
+
+        [data-theme="light"] .gallery::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        @media (min-width: 720px) {
+            .gallery {
+                grid-auto-columns: 31%;
+            }
+        }
+
+        .gallery-item {
+            scroll-snap-align: center;
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="light"] .map-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        footer {
+            padding: 26px 16px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        [data-theme="light"] footer {
+            color: #9ca3af;
+        }
+
+        /* Google Translate Styling */
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-combo {
+            background: var(--card) !important;
+            border: 1px solid rgba(148, 163, 184, 0.35) !important;
+            border-radius: 50px !important;
+            padding: 8px 12px !important;
+            font-size: 0.9rem !important;
+            color: var(--text) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .controls {
+                flex-direction: column-reverse;
+            }
+
+            .bottom-controls {
+                flex-direction: column;
+                gap: 6px;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            html[dir="rtl"] .bottom-controls {
+                flex-direction: column-reverse;
+            }
+
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 16px 12px 24px;
+            }
+
+            .hero-inner {
+                padding: 12px 12px;
+            }
+
+            h1 {
+                font-size: clamp(16px, 3.5vw, 28px);
+            }
+
+            .pill {
+                font-size: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+    </div>
+
+    <div class="bottom-controls">
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL/LTR">→‎←</button>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div>
+                <div class="pill">The best time to visit Tinghir is during the spring (March to May) and autumn (September to November) months. During these periods, the weather is pleasantly warm, ideal for exploring the oasis, hiking in the Todra Gorge, and enjoying outdoor activities without the extreme heat of summer or the cooler temperatures of winter. Spring is particularly beautiful as the palm groves are lush and the roses in the nearby Dadès Valley begin to bloom.</div>
+                <h1>Tinghir, Morocco</h1>
+                
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quick facts -->
+        <section class="section">
+            <h2 class="section-title">Highlights</h2>
+            <div class="grid cards">
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Tinghir is famously known as the gateway to the dramatic Todra Gorge, a series of stunning canyon walls popular with rock climbers and hikers.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">The town is surrounded by one of Morocco's largest and most beautiful oases, featuring extensive palm groves that stretch for over 30 kilometers.</p>
+                </article>
+                
+                <article class="card">
+                    <h3 class="card-title">Did you know?</h3>
+                    <p class="muted">Tinghir is predominantly inhabited by the Amazigh (Berber) people, whose rich cultural heritage, language, and traditions are deeply embedded in the local way of life.</p>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- History -->
+        <section class="section">
+            <h2 class="section-title">Story of this place</h2>
+            <article class="history">
+                <p>Tinghir, nestled within the vast expanse of the High Atlas Mountains in southeastern Morocco, boasts a rich and layered history stretching back centuries. Its strategic position as a fertile oasis town along ancient trans-Saharan trade routes made it a vital stop for caravans traversing between the Sahara and the imperial cities of the north. The region has long been inhabited by Amazigh (Berber) tribes, whose resilient culture and traditions continue to define the area.
+
+The landscape of Tinghir is punctuated by numerous kasbahs and ksours, fortified villages and strongholds built from mud-brick, which served both defensive purposes and as homes for extended families. These architectural marvels, many now in various states of disrepair or restoration, are testaments to a time when communities needed to protect themselves from rival tribes and external forces. One of the most prominent historical figures associated with the region is the Glaoui family, who wielded significant power in southern Morocco during the late 19th and early 20th centuries, leaving their mark on several kasbahs in and around Tinghir.
+
+During the French Protectorate in the early 20th century, Tinghir, like much of southern Morocco, experienced a period of modernization, albeit with the imposition of colonial administrative structures. Roads were improved, and some infrastructure was developed, further integrating the region into the broader Moroccan state. However, the fundamental agricultural practices and the unique social organization of the Amazigh people largely persisted.
+
+Today, Tinghir remains a vibrant agricultural hub, renowned for its extensive palm groves producing dates, olives, and a variety of fruits, as well as its rose cultivation, especially in the nearby Dadès Valley. It serves as a crucial gateway to the spectacular Todra Gorge, attracting climbers and trekkers from around the globe. The town is a living museum of traditional Berber life, where ancient irrigation systems (khettaras) still nourish the lush oasis, and the echoes of its storied past resonate in its architecture and the warmth of its people. Its history is a testament to adaptation, resilience, and the enduring connection between its inhabitants and the dramatic Moroccan landscape.</p>
+            </article>
+        </section>
+
+        <!-- Nearby places -->
+        <section class="section">
+            <h2 class="section-title">Nearby places</h2>
+            
+            <div class="grid cards">
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🍽️ Souk de Tinghir (Traditional Market)</div>
+                    
+                    <div class="nearby-distance">0.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Souk%20de%20Tinghir%20%28Traditional%20Market%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Kasbah Museum (Tinghir)</div>
+                    
+                    <div class="nearby-distance">0.8 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Kasbah%20Museum%20%28Tinghir%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Tinghir Palm Grove (Palmeraie)</div>
+                    
+                    <div class="nearby-distance">1.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Tinghir%20Palm%20Grove%20%28Palmeraie%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🏛️ Ait el Haj Museum</div>
+                    
+                    <div class="nearby-distance">1.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Ait%20el%20Haj%20Museum" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Panoramic Viewpoint of Tinghir Oasis</div>
+                    
+                    <div class="nearby-distance">2.5 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Panoramic%20Viewpoint%20of%20Tinghir%20Oasis" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">🌳 Todgha River Walk (within the oasis)</div>
+                    
+                    <div class="nearby-distance">3.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Todgha%20River%20Walk%20%28within%20the%20oasis%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Village of Afanour</div>
+                    
+                    <div class="nearby-distance">7.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Village%20of%20Afanour" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Todra Gorges Scenic Drive</div>
+                    
+                    <div class="nearby-distance">10.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Todra%20Gorges%20Scenic%20Drive" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+                <article class="card nearby-item">
+                    <div class="nearby-name">📸 Todra Gorges (Narrow Canyon)</div>
+                    
+                    <div class="nearby-distance">15.0 km away</div>
+                    
+                    <a class="btn" href="https://www.google.com/maps/search/Todra%20Gorges%20%28Narrow%20Canyon%29" target="_blank" rel="noopener">
+                        Open in Maps
+                    </a>
+                </article>
+                
+            </div>
+            
+        </section>
+
+        <!-- Gallery -->
+        <section class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1624802294472-4dc449c1c127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxfHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - rigel" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1736335001005-826ea1f27ffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwyfHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Wietse Jongsma" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1589234145872-22379e4a25da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwzfHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Megan Schultz" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1733654039689-f0852bed75d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw0fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Wietse Jongsma" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1706804391543-0edd327103d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw1fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Siem" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659739670852-8c9d3399ebde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw2fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659740135595-530144b3f614?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw3fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659740367136-3b7e7bce8722?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw4fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1659740607192-c6b6a5030ec0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHw5fHxUaW5naGlyJTJDJTIwTW9yb2Njb3xlbnwwfHx8fDE3NjY0MDcxMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1668958787845-a71bd72bda02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMHx8VGluZ2hpciUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY2NDA3MTMwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Othmane Bekkari" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1637707808135-1347504075a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMXx8VGluZ2hpciUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY2NDA3MTMwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1637707807941-9d6f648988ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDA3Mzl8MHwxfHNlYXJjaHwxMnx8VGluZ2hpciUyQyUyME1vcm9jY298ZW58MHx8fHwxNzY2NDA3MTMwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Tinghir, Morocco - Zarouri Hicham" loading="lazy">
+                </figure>
+                
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="section map-section">
+            <h2 class="section-title">Location</h2>
+            <div class="map-container">
+                <iframe loading="lazy" src="https://maps.google.com/maps?q=31.52133,-5.531164&z=14&output=embed"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Travel Guide Bot • Discover Every Place
+    </footer>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,fa',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const html = document.documentElement;
+        const locationText = document.getElementById('locationText');
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateToggleButton();
+
+        // Load saved RTL preference
+        const savedRtl = localStorage.getItem('rtl') || 'ltr';
+        if (savedRtl === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton();
+        });
+
+        rtlToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                html.removeAttribute('dir');
+                localStorage.setItem('rtl', 'ltr');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                localStorage.setItem('rtl', 'rtl');
+            }
+        });
+
+        // Location text expand/collapse
+        if (locationText) {
+            locationText.addEventListener('click', () => {
+                const isExpanded = locationText.classList.contains('expanded');
+                if (isExpanded) {
+                    locationText.classList.remove('expanded');
+                    locationText.classList.add('collapsed');
+                } else {
+                    locationText.classList.remove('collapsed');
+                    locationText.classList.add('expanded');
+                }
+            });
+        }
+
+        function updateToggleButton() {
+            const theme = html.getAttribute('data-theme');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
