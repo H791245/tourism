@@ -91,7 +91,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 24px;
         }
@@ -122,6 +122,16 @@
             font-size: 14px;
             color: var(--text-secondary);
             margin-left: 2px;
+        }
+
+        .stat-progress {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .stat-value.goal-met {
+            color: var(--success);
         }
 
         .section {
@@ -190,7 +200,6 @@
         }
 
         .btn-hydrate-out {
-            grid-column: 1 / -1;
             background: var(--success);
         }
 
@@ -207,6 +216,28 @@
 
         .btn-export:hover {
             background: var(--border);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .input-field {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 16px;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         .history {
@@ -344,6 +375,31 @@
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
+
+        .ratio-card {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            color: white;
+            text-align: center;
+            padding: 16px;
+        }
+
+        .ratio-card .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .ratio-card .stat-value {
+            color: white;
+            font-size: 28px;
+        }
+
+        .btn-primary {
+            background: var(--success);
+            grid-column: span 2;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+        }
     </style>
 </head>
 <body>
@@ -361,15 +417,22 @@
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Drinks</div>
+                <div class="stat-label">Output</div>
+                <div class="stat-value" id="outputValue">
+                    <span id="outputToday">0</span><span class="stat-unit">ml</span>
+                </div>
+                <div class="stat-progress" id="outputProgress">Goal: 2000ml</div>
+            </div>
+            <div class="stat-card ratio-card">
+                <div class="stat-label">Ratio</div>
                 <div class="stat-value">
-                    <span id="drinksToday">0</span><span class="stat-unit">×</span>
+                    <span id="ratioToday">0.0</span>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Output</div>
+                <div class="stat-label">Drinks</div>
                 <div class="stat-value">
-                    <span id="outputToday">0</span><span class="stat-unit">×</span>
+                    <span id="drinksToday">0</span><span class="stat-unit">×</span>
                 </div>
             </div>
         </div>
@@ -402,10 +465,21 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Log Output</div>
+            <div class="section-title">Log Pee Volume</div>
+            <div class="input-group">
+                <input type="number" id="peeInput" class="input-field" placeholder="Volume (ml)" inputmode="numeric">
+            </div>
             <div class="button-grid">
-                <button class="btn btn-hydrate-out" onclick="logOutput()">
-                    💦 Hydrate Out
+                <button class="btn btn-primary" onclick="logOutputQuick(300)">
+                    <span class="btn-amount">300</span>
+                    <span class="btn-label">ml</span>
+                </button>
+                <button class="btn" onclick="logOutputQuick(500)">
+                    <span class="btn-amount">500</span>
+                    <span class="btn-label">ml</span>
+                </button>
+                <button class="btn btn-hydrate-out" onclick="logOutputCustom()">
+                    💦 Log Custom Amount
                 </button>
             </div>
         </div>
@@ -478,16 +552,39 @@
             showToast(`Logged ${amount}ml intake`);
         }
 
-        // Log output
-        function logOutput() {
+        // Log output with quick buttons
+        function logOutputQuick(amount) {
             const entry = {
                 type: 'output',
+                amount: amount,
                 timestamp: new Date().toISOString()
             };
             data.entries.push(entry);
             saveData();
             updateUI();
-            showToast('Logged hydrate out');
+            showToast(`Logged ${amount}ml pee`);
+        }
+
+        // Log output with custom amount
+        function logOutputCustom() {
+            const input = document.getElementById('peeInput');
+            const amount = parseInt(input.value);
+
+            if (!amount || amount <= 0) {
+                showToast('Enter valid volume');
+                return;
+            }
+
+            const entry = {
+                type: 'output',
+                amount: amount,
+                timestamp: new Date().toISOString()
+            };
+            data.entries.push(entry);
+            saveData();
+            updateUI();
+            showToast(`Logged ${amount}ml pee`);
+            input.value = '';
         }
 
         // Save data
@@ -513,12 +610,31 @@
                 .filter(e => e.type === 'intake')
                 .reduce((sum, e) => sum + e.amount, 0);
 
+            const output = todayEntries
+                .filter(e => e.type === 'output')
+                .reduce((sum, e) => sum + (e.amount || 0), 0);
+
             const drinks = todayEntries.filter(e => e.type === 'drink').length;
-            const output = todayEntries.filter(e => e.type === 'output').length;
+
+            const ratio = intake > 0 ? (output / intake).toFixed(2) : '0.00';
 
             document.getElementById('intakeToday').textContent = intake;
-            document.getElementById('drinksToday').textContent = drinks;
             document.getElementById('outputToday').textContent = output;
+            document.getElementById('drinksToday').textContent = drinks;
+            document.getElementById('ratioToday').textContent = ratio;
+
+            // Update output goal status
+            const outputValue = document.getElementById('outputValue');
+            const outputProgress = document.getElementById('outputProgress');
+
+            if (output >= 2000) {
+                outputValue.classList.add('goal-met');
+                outputProgress.textContent = '✓ Goal met!';
+            } else {
+                outputValue.classList.remove('goal-met');
+                const remaining = 2000 - output;
+                outputProgress.textContent = `${remaining}ml to goal`;
+            }
         }
 
         // Update history
@@ -571,7 +687,7 @@
                             <div class="history-info">
                                 <div class="history-icon output">💦</div>
                                 <div class="history-details">
-                                    <div class="history-amount">Hydrate Out</div>
+                                    <div class="history-amount">${entry.amount || 0}ml</div>
                                     <div class="history-time">${time}</div>
                                 </div>
                             </div>
@@ -592,12 +708,16 @@
                 days.push(date);
             }
 
-            const maxIntake = Math.max(...days.map(day => {
+            const maxValue = Math.max(...days.map(day => {
                 const dayStr = day.toDateString();
-                return data.entries
+                const intake = data.entries
                     .filter(e => e.type === 'intake' && new Date(e.timestamp).toDateString() === dayStr)
                     .reduce((sum, e) => sum + e.amount, 0);
-            }), 1500);
+                const output = data.entries
+                    .filter(e => e.type === 'output' && new Date(e.timestamp).toDateString() === dayStr)
+                    .reduce((sum, e) => sum + (e.amount || 0), 0);
+                return Math.max(intake, output);
+            }), 2000);
 
             chartBars.innerHTML = days.map(day => {
                 const dayStr = day.toDateString();
@@ -609,10 +729,12 @@
                     .filter(e => e.type === 'intake')
                     .reduce((sum, e) => sum + e.amount, 0);
 
-                const output = dayEntries.filter(e => e.type === 'output').length;
+                const output = dayEntries
+                    .filter(e => e.type === 'output')
+                    .reduce((sum, e) => sum + (e.amount || 0), 0);
 
-                const intakeHeight = (intake / maxIntake) * 100;
-                const outputHeight = output > 0 ? Math.min((output / 10) * 100, 100) : 0;
+                const intakeHeight = (intake / maxValue) * 100;
+                const outputHeight = (output / maxValue) * 100;
 
                 const label = day.toLocaleDateString('en-US', { weekday: 'short' });
 
@@ -638,8 +760,8 @@
             const exportData = data.entries.map(entry => ({
                 Date: new Date(entry.timestamp).toLocaleDateString(),
                 Time: new Date(entry.timestamp).toLocaleTimeString(),
-                Type: entry.type === 'intake' ? 'Bottle Completion' : entry.type === 'drink' ? 'Drink' : 'Hydrate Out',
-                Amount: entry.type === 'intake' ? `${entry.amount}ml` : '-'
+                Type: entry.type === 'intake' ? 'Bottle Completion' : entry.type === 'drink' ? 'Drink' : 'Pee',
+                Amount: entry.amount ? `${entry.amount}ml` : '-'
             }));
 
             const ws = XLSX.utils.json_to_sheet(exportData);
